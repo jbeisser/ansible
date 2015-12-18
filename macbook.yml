@@ -1,0 +1,61 @@
+- hosts: localhost
+  sudo: no
+
+  tasks:
+    - name: Update Homebrew
+      homebrew: update_homebrew=yes upgrade_all=no
+      homebrew: name=brew-cask state=present
+
+    - name: Install AWS tools.
+      homebrew: name={{ item }} state=present
+      with_items:
+        - awscli
+        - amazon-ecs-cli
+
+    - name: Install pyenv and friends.
+      homebrew: name={{ item }} state=present
+      with_items:
+        - matplotlib
+        - pyenv
+        - pyenv-pip-migrate
+        - pyenv-virtualenv
+
+    - name: Install network tools.
+      homebrew: name={{ item }} state=present
+      with_items:
+        - blucat
+        - curl
+        - dnscrypt-proxy
+        - dnsmasq
+        - ettercap
+        - httping
+        - kafkacat
+        - mtr
+        - nmap
+        - openvpn
+        - speedtest_cli
+        - sshuttle
+        - tor
+        - torsocks
+        - tuntap
+
+    - name: install dev tools.
+      homebrew: name={{ item }} state=present
+      with_items:
+        - docker
+        - docker-machine
+        - git
+        - git-subrepo
+        - go
+        - saltstack
+        - scala
+        - sqlite
+        - tmux
+
+    - name: random other crap.
+      homebrew: name={{ item }} state=present
+      with_items:
+        - ffmpeg
+        - irssi
+        - silc-client
+        - youtube-dl
