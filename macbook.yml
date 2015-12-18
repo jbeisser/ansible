@@ -60,3 +60,16 @@
         - irssi
         - silc-client
         - youtube-dl
+
+    - name: Things from Cask
+      homebrew_cask: name={{ item }} state=present
+      with_items:
+        - evernote
+        - iterm2
+        - osxfuse
+        - transmission
+        - wireshark
+        - virtualbox
+        - virtualbox-extension-pack
+        - vagrant
+        - xquartz
