@@ -1,5 +1,6 @@
 - hosts: localhost
   sudo: no
+  connection: local
 
   tasks:
     - name: Update Homebrew
