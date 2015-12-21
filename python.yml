@@ -1,0 +1,13 @@
+---
+# Python with support for pyenv. Specific pips, etc installed.
+# adapted from https://supportex.net/blog/2014/10/ansible-installing-pyenv-centos/
+
+- hosts: all
+
+  tasks:
+  - name: is pyenv installed
+    command: test -x `which pyenv`
+    register: pyenv_present
+    ignore_errors: yes
+
+  - name: install specific versions for pyenv
