@@ -5,9 +5,13 @@
 - hosts: all
 
   tasks:
+  # I'm assuming MacOS w/ homebrew here.
+  # Not a good assumption, but okay for now.
   - name: is pyenv installed
-    command: test -x `which pyenv`
+    command: test -x /usr/local/bin/pyenv`
     register: pyenv_present
     ignore_errors: yes
 
   - name: install specific versions for pyenv
+    shell: 'source "$(pyenv init -)" && pyenv install 2.7.6'
+    when: pyenv_present|failed
