@@ -1,9 +1,16 @@
+---
 - hosts: localhost
   sudo: no
   connection: local
 
   tasks:
-    - name: Update Homebrew | install cask
+    # this seriously annoys me. I don't want anything opening when I plug in
+    # my phone or a camera.
+    - name: Disable ImageCapture hotplug.
+      command: >
+        defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool YES
+
+    - name: Update Homebrew and install cask
       homebrew: update_homebrew=yes upgrade_all=no
       homebrew: name=brew-cask state=present
 
@@ -64,6 +71,7 @@
     - name: Things from Cask
       homebrew_cask: name={{ item }} state=present
       with_items:
+        - bittorrent-sync
         - google-chrome
         - evernote
         - iterm2
