@@ -13,5 +13,30 @@
     ignore_errors: yes
 
   - name: install specific versions for pyenv
-    shell: 'source "$(pyenv init -)" && pyenv install 2.7.6'
+    shell: 'source "$(pyenv init -)" && pyenv install 2.7.10'
     when: pyenv_present|failed
+
+  - name: Activate python 2.7.10
+    shell: 'source "$(pyenv init -)" && pyenv global 2.7.10'
+    when: pyenv_present|failed
+
+  - name: Install python modules to pyenv...
+    pip: name={{ item }}
+    with_items:
+     - boto
+     - boto3
+     - botocore
+     - ipython
+     - ipywidgets
+     - jmespath-terminal
+     - jupyter
+     - jupyter-client
+     - jupyter-console
+     - jupyter-core
+     - matplotlib
+     - pandas
+     - tornado
+
+  - name: go back to system python..
+    shell: 'source "$(pyenv init -)" && pyenv global system'
+    ignore_errors: yes
