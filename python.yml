@@ -3,25 +3,27 @@
 # adapted from https://supportex.net/blog/2014/10/ansible-installing-pyenv-centos/
 
 - hosts: all
+  connection: local
 
   tasks:
   # I'm assuming MacOS w/ homebrew here.
   # Not a good assumption, but okay for now.
   - name: is pyenv installed
-    command: test -x /usr/local/bin/pyenv`
+    shell: "test -x $(which pyenv) && echo 'Found'"
     register: pyenv_present
     ignore_errors: yes
 
   - name: install specific versions for pyenv
-    shell: 'source "$(pyenv init -)" && pyenv install 2.7.10'
+    shell: 'eval "$(pyenv init -)" && pyenv install 2.7.10'
     when: pyenv_present|failed
 
   - name: Activate python 2.7.10
-    shell: 'source "$(pyenv init -)" && pyenv global 2.7.10'
-    when: pyenv_present|failed
+    shell: 'eval "$(pyenv init -)" && pyenv global 2.7.10'
+    when: pyenv_present
 
   - name: Install python modules to pyenv...
     pip: name={{ item }}
+    when: pyenv_present
     with_items:
      - boto
      - boto3
@@ -38,5 +40,6 @@
      - tornado
 
   - name: go back to system python..
-    shell: 'source "$(pyenv init -)" && pyenv global system'
+    shell: 'eval "$(pyenv init -)" && pyenv global system'
+    when: pyenv_present
     ignore_errors: yes
