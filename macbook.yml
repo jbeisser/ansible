@@ -77,10 +77,14 @@
         - crashplan
         - google-chrome
         - evernote
+        - istumbler
         - iterm2
         - osxfuse
         - skype
+        - sonos
+        - sshfs
         - transmission
+        - tuntap
         - tunnelblick
         - wireshark
         - virtualbox
