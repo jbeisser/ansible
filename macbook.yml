@@ -73,6 +73,8 @@
       homebrew_cask: name={{ item }} state=present
       with_items:
         - bittorrent-sync
+        - caffeine
+        - crashplan
         - google-chrome
         - evernote
         - iterm2
