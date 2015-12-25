@@ -61,6 +61,14 @@
         - sqlite
         - tmux
 
+    - name: Install BAsh completions.
+      homebrew: name={{ item }} state=present
+      with_items:
+        - bash-completion2
+        - brew-cask-completion
+        - pip-completion
+        - vagrant-completion
+
     - name: random other crap.
       homebrew: name={{ item }} state=present
       with_items:
