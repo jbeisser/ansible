@@ -27,6 +27,7 @@
         - pyenv
         - pyenv-pip-migrate
         - pyenv-virtualenv
+    - include: python.yml
 
     - name: Install network tools.
       homebrew: name={{ item }} state=present
