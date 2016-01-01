@@ -1,0 +1,116 @@
+---
+- hosts: all
+  sudo: no
+  connection: local
+
+  tasks:
+  # OSX defaults fixes first
+  - name: Set up defaults for ImageCapture and screensaver.
+    # Disable Image Capture Hotplug
+    command: >
+      defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool YES
+    # require passwords after screensaver start
+    command: >
+      defaults -currentHost write com.apple.screensaver askForPassword -int 1
+    command: >
+      defaults -currentHost write com.apple.screensaver askForPasswordDelay -int 0
+    # Make ~/Library visible.
+    command: >
+      chflags nohidden ~/Library
+
+  # setup homebrew/taps
+  - name: install Homebrew taps
+    homebrew_tap: tap={{ item }} state=present
+    with_items:
+      - caskroom/cask
+      - homebrew/completions
+      - homebrew/games
+      - homebrew/python
+
+  - name: Update Homebrew and install cask
+    homebrew: update_homebrew=yes upgrade_all=no
+    homebrew: name=brew-cask state=latest
+
+  # this should probably go second
+  - name: Things from Cask
+    homebrew_cask: name={{ item }} state=present
+    with_items:
+      - bittorrent-sync
+      - caffeine
+      - crashplan
+      - google-chrome
+      - evernote
+      - ios-console
+      - istumbler
+      - iterm2
+      - osxfuse
+      - slack
+      - skype
+      - sonos
+      - sshfs
+      - transmission
+      - tuntap
+      - tunnelblick
+      - wireshark
+      - virtualbox
+      - virtualbox-extension-pack
+      - vagrant
+      - xquartz
+
+  - name: Install AWS tools.
+    homebrew: name={{ item }} state=present
+    with_items:
+      - awscli
+      - amazon-ecs-cli
+
+  - name: Install pyenv and friends.
+    homebrew: name={{ item }} state=present
+    with_items:
+      - matplotlib
+      - pyenv
+      - pyenv-pip-migrate
+      - pyenv-virtualenv
+
+  - name: Install network and privacy tools.
+    homebrew: name={{ item }} state=present
+    with_items:
+      - curl
+      - dnscrypt-proxy
+      - dnsmasq
+      - ettercap
+      - httping
+      - kafkacat
+      - mtr
+      - nmap
+      - openvpn
+      - speedtest_cli
+      - sshuttle
+      - tor
+      - torsocks
+
+  - name: Install Dev/Ops tools.
+    homebrew: name={{ item }} state=present
+    with_items:
+      - docker
+      - docker-machine
+      - git
+      - git-subrepo
+      - go
+      - saltstack
+      - sqlite
+      - tmux
+
+  - name: Install BAsh completions.
+    homebrew: name={{ item }} state=present
+    with_items:
+      - brew-cask-completion
+      - pip-completion
+      - vagrant-completion
+
+  - name: random other crap.
+    homebrew: name={{ item }} state=present
+    with_items:
+      - ffmpeg
+      - irssi
+      - silc-client
+      - youtube-dl
