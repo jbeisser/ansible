@@ -31,7 +31,6 @@
     homebrew: update_homebrew=yes upgrade_all=no
     homebrew: name=brew-cask state=latest
 
-  # this should probably go second
   - name: Things from Cask
     homebrew_cask: name={{ item }} state=present
     with_items:
