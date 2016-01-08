@@ -51,9 +51,10 @@
       - tuntap
       - tunnelblick
       - wireshark
+      - vagrant
       - virtualbox
       - virtualbox-extension-pack
-      - vagrant
+      - vlc
       - xquartz
 
   - name: Install AWS tools.
