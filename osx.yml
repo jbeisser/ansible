@@ -32,7 +32,7 @@
     homebrew: name=brew-cask state=latest
 
   - name: Things from Cask
-    homebrew_cask: name={{ item }} state=present
+    homebrew_cask: name={{ item }} state=latest
     with_items:
       - bittorrent-sync
       - caffeine
@@ -57,13 +57,13 @@
       - xquartz
 
   - name: Install AWS tools.
-    homebrew: name={{ item }} state=present
+    homebrew: name={{ item }} state=latest
     with_items:
       - awscli
       - amazon-ecs-cli
 
   - name: Install pyenv and friends.
-    homebrew: name={{ item }} state=present
+    homebrew: name={{ item }} state=latest
     with_items:
       - matplotlib
       - pyenv
@@ -71,7 +71,7 @@
       - pyenv-virtualenv
 
   - name: Install network and privacy tools.
-    homebrew: name={{ item }} state=present
+    homebrew: name={{ item }} state=latest
     with_items:
       - curl
       - dnscrypt-proxy
@@ -88,7 +88,7 @@
       - torsocks
 
   - name: Install Dev/Ops tools.
-    homebrew: name={{ item }} state=present
+    homebrew: name={{ item }} state=latest
     with_items:
       - docker
       - docker-machine
@@ -100,14 +100,14 @@
       - tmux
 
   - name: Install BAsh completions.
-    homebrew: name={{ item }} state=present
+    homebrew: name={{ item }} state=latest
     with_items:
       - brew-cask-completion
       - pip-completion
       - vagrant-completion
 
   - name: random other crap.
-    homebrew: name={{ item }} state=present
+    homebrew: name={{ item }} state=latest
     with_items:
       - ffmpeg
       - irssi
