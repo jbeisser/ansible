@@ -34,15 +34,20 @@
   - name: Things from Cask
     homebrew_cask: name={{ item }} state=latest
     with_items:
-      - bittorrent-sync
       - caffeine
       - crashplan
+      - docker
       - google-chrome
       - evernote
       - ios-console
       - istumbler
       - iterm2
+      - keepassx
+      - kitematic
       - osxfuse
+      - mactex
+      - postman
+      - soundflower
       - slack
       - skype
       - sonos
@@ -91,8 +96,9 @@
   - name: Install Dev/Ops tools.
     homebrew: name={{ item }} state=latest
     with_items:
-      - docker
+      # - docker :: moved to cask
       - docker-machine
+      - dockviz
       - git
       - git-subrepo
       - go
@@ -104,12 +110,17 @@
     homebrew: name={{ item }} state=latest
     with_items:
       - brew-cask-completion
+      - docker-completion
+      - docker-compose-completion
+      - docker-machine-completion
       - pip-completion
       - vagrant-completion
 
   - name: random other crap.
     homebrew: name={{ item }} state=latest
     with_items:
+      - geoip
+      - geoipupdate
       - ffmpeg
       - irssi
       - silc-client
