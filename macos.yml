@@ -27,8 +27,10 @@
       - homebrew/games
       - homebrew/python
 
-  - name: Update Homebrew and install cask
+  - name: Update Homebrew
     homebrew: update_homebrew=yes upgrade_all=no
+
+  - name: Install Cask
     homebrew: name=brew-cask state=latest
 
   - name: Things from Cask
