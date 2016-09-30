@@ -1,7 +1,5 @@
 ---
 - hosts: all
-  sudo: no
-  connection: local
 
   tasks:
   # OSX defaults fixes first
@@ -108,7 +106,7 @@
       - sqlite
       - tmux
 
-  - name: Install BAsh completions.
+  - name: Install Bash completions.
     homebrew: name={{ item }} state=latest
     with_items:
       - brew-cask-completion
