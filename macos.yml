@@ -28,11 +28,8 @@
   - name: Update Homebrew
     homebrew: update_homebrew=yes upgrade_all=no
 
-  - name: Install Cask
-    homebrew: name=brew-cask state=latest
-
   - name: Things from Cask
-    homebrew_cask: name={{ item }} state=latest
+    homebrew_cask: name={{ item }} state=installed
     with_items:
       - caffeine
       - crashplan
@@ -119,6 +116,7 @@
   - name: random other crap.
     homebrew: name={{ item }} state=latest
     with_items:
+      - mas
       - geoip
       - geoipupdate
       - ffmpeg
