@@ -3,18 +3,33 @@
 
   tasks:
   # OSX defaults fixes first
-  - name: Set up defaults for ImageCapture and screensaver.
-    # Disable Image Capture Hotplug
-    command: >
-      defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool YES
-    # require passwords after screensaver start
-    command: >
-      defaults -currentHost write com.apple.screensaver askForPassword -int 1
-    command: >
-      defaults -currentHost write com.apple.screensaver askForPasswordDelay -int 0
-    # Make ~/Library visible.
-    command: >
-      chflags nohidden ~/Library
+  - name: Disable HotPlug for ImageCapture
+    osx_defaults:
+      domain: com.apple.ImageCapture
+      key: disableHotPlug
+      type: bool
+      value: true
+      state: present
+
+  - name: Enable Screensaver password requests
+    osx_defaults:
+      domain: com.apple.screensaver
+      key: askForPassWord
+      type: int
+      value: 1
+      state: present
+
+  - name: Require password immediately
+    osx_defaults:
+      domain: com.apple.screensaver
+      key: askForPassWordDelay
+      type: int
+      value: 0
+      state: present
+
+  - name: Set "nohidden" on ~/Library
+    command: chflags nohidden ~/Library
+
 
   # setup homebrew/taps
   - name: install Homebrew taps
