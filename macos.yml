@@ -72,10 +72,11 @@
       - osxfuse
       - mactex
       - postman
-      - soundflower
-      - slack
       - skype
+      - slack
       - sonos
+      - soundflower
+      - spotify
       - sshfs
       - transmission
       - tuntap
