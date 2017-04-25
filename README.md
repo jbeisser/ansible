@@ -10,10 +10,10 @@ The `inventory` file has a single entry for localhost.
 `pyenv` then install Python 2.7.10, and a collection of Python modules. *currently broken.*
 
 To test the playbook:
-    `ansible-playbook -i inventory --syntax-check --list-tasks -vvvv ./macos.yml`
+    `ansible-playbook -i "localhost," -c local --ask-become-pass -vvvv ./macos.yml --check`
 
 To install:
-    `ansible-playbook -i inventory ./macos.yml`
+    `ansible-playbook -i "localhost," -c local --ask-become-pass ./macos.yml`
 
 ### Caveats
 **These are still under refinement. I know `python.yml` is broken.**

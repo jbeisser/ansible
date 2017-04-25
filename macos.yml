@@ -27,6 +27,17 @@
       value: 0
       state: present
 
+  - name: Re-enable at(1).
+    command: launchctl load -w /System/Library/LaunchDaemons/com.apple.atrun.plist
+    become: true
+
+  - name: 24-hour clock
+    osx_defaults:
+      domain: com.apple.menuextra.clock
+      key: DateFormat
+      type: string
+      value: "H:mm"
+
   - name: Set "nohidden" on ~/Library
     command: chflags nohidden ~/Library
 
@@ -36,7 +47,9 @@
     homebrew_tap: tap={{ item }} state=present
     with_items:
       - caskroom/cask
+      - homebrew/fuse
       - homebrew/completions
+      - homebrew/science
       - homebrew/games
       - homebrew/python
 
@@ -109,7 +122,6 @@
     homebrew: name={{ item }} state=latest
     with_items:
       # - docker :: moved to cask
-      - docker-machine
       - dockviz
       - git
       - git-subrepo
@@ -124,7 +136,6 @@
       - brew-cask-completion
       - docker-completion
       - docker-compose-completion
-      - docker-machine-completion
       - pip-completion
       - vagrant-completion
 
@@ -136,5 +147,4 @@
       - geoipupdate
       - ffmpeg
       - irssi
-      - silc-client
       - youtube-dl
