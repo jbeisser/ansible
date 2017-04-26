@@ -62,7 +62,6 @@
       - caffeine
       - crashplan
       - docker
-      - google-chrome
       - evernote
       - ios-console
       - istumbler
@@ -77,7 +76,6 @@
       - sonos
       - soundflower
       - spotify
-      - sshfs
       - transmission
       - tuntap
       - tunnelblick
@@ -109,6 +107,7 @@
       - dnscrypt-proxy
       - dnsmasq
       - ettercap
+      - gpg2
       - httping
       - kafkacat
       - mtr
@@ -127,6 +126,7 @@
       - git
       - git-subrepo
       - go
+      - packer
       - saltstack
       - sqlite
       - tmux
