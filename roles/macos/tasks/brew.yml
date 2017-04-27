@@ -1,0 +1,85 @@
+---
+# brew components
+
+- name: Brew taps.
+  homebrew_tap: tap={{ item }} state=present
+  with_items:
+    - caskroom/cask
+    - homebrew/completions
+    - homebrew/science
+    - homebrew/python
+
+
+- name: Update Homebrew
+  homebrew: update_homebrew=yes upgrade_all=no
+
+- name: Install Casks
+  homebrew_cask: name={{ item }} state=installed
+  with_items:
+    - caffeine
+    - crashplan
+    - docker
+    - google-chrome
+    - evernote
+    - ios-console
+    - istumbler
+    - iterm2
+    - kitematic
+    - mactex
+    - postman
+    - slack
+    - transmission
+    - tuntap
+    - tunnelblick
+    - xquartz
+
+- name: Install VM stuff
+  homebrew_cask: name={{ item }} state=installed
+  with_items:
+    - virtualbox
+    - virtualbox-extension-pack
+    - vagrant
+
+- name: Install Music Stuff
+  homebrew_cask: name={{ item }} state=installed
+  with_items:
+    - sonos
+    - spotify
+
+- name: Install Shell Tools
+  homebrew: name={{ item }} state=latest
+  with_items:
+    - tmux
+    - irssi
+    - speedtest_cli
+    - brew-cask-completion
+    - docker-completion
+    - pip-completion
+    - vagrant-completion
+
+- name: Install compilers
+  homebrew: name={{ item }} state=latest
+  with_items:
+    - go
+
+- name: Install DevOps Tools
+  homebrew: name={{ item }} state=latest
+  with_items:
+    - awscli
+    - amazon-ecs-cli
+    - packer
+    - saltstack
+    - terraform
+    - dockviz
+
+- name: Install Security/Privacy Tools
+  homebrew: name={{ item }} state=latest
+  with_items:
+    - ettercap
+    - httping
+    - nmap
+    - pgp
+    - sshuttle
+    - tor
+    - torsocks
+

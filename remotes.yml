@@ -1,5 +1,7 @@
 ---
 - hosts: all
+  vars:
+    homedir: $HOME
+
   roles:
     - home
-    - macos
