@@ -16,9 +16,9 @@ To install:
     `ansible-playbook -i "localhost," -c local --ask-become-pass ./macos.yml`
 
 ### Roles
-`home` - sets up $HOME with directories and some files
-`macos` - installs software via brew, brew-cask, and adds some taps
-`python` - installs [`pyenv`](https://github.com/pyenv/pyenv), and [`pyenv-virtualenv`](https://github.com/pyenv/pyenv-virtualenv).
+`home` - sets up $HOME with directories and some files  
+`macos` - installs software via brew, brew-cask, and adds some taps  
+`python` - installs [`pyenv`](https://github.com/pyenv/pyenv), and [`pyenv-virtualenv`](https://github.com/pyenv/pyenv-virtualenv).  
 
 ### Caveats
 Stil being worked on, and not complete. Eventually some variables other than `ansible_env.HOME` will be abused.
