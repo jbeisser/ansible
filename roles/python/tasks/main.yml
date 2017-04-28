@@ -21,7 +21,7 @@
 - name: Set PATH variable
   lineinfile:
     path: "{{ ansible_env.HOME }}/.bashrc"
-    line: 'PATH=$PYENV_ROOT/bin:$PATH'
+    line: 'export PATH=$PYENV_ROOT/bin:$PATH'
     state: present
 
 - name: Get EVAL in place
