@@ -4,7 +4,7 @@
   file: 
     path: "{{ ansible_env.HOME }}/bin"
     state: directory
-    mode: 0775
+    mode: 0750
 
 - name: Create $HOME/projects
   file:
@@ -12,4 +12,11 @@
     state: directory
     mode: 0750
 
+- name: Copy tmux config
+  copy:
+    src: files/tmux.conf
+    dest: "{{ ansible_env.HOME }}/.tmux.conf"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_real_group_id }}"
+    mode: 0640
 

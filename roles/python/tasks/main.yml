@@ -15,7 +15,7 @@
 - name: Set up bashrc
   lineinfile:
     path: "{{ ansible_env.HOME }}/.bashrc"
-    line: 'export $PYENV_ROOT="$HOME/.pyenv"'
+    line: 'export PYENV_ROOT="$HOME/.pyenv"'
     state: present
 
 - name: Set PATH variable
@@ -32,8 +32,8 @@
 
 - name: Install pyenv-virtualenv
   git:
-    repo: 'git clone https://github.com/pyenv/pyenv-virtualenv.git'
-    dest: "{{ ansible.HOME }}/.pyenv/plugins/pyenv-virtualenv"
+    repo: 'https://github.com/pyenv/pyenv-virtualenv.git'
+    dest: "{{ ansible_env.HOME }}/.pyenv/plugins/pyenv-virtualenv"
 
 - name: Set pyenv-virtualenv eval.
   lineinfile:
