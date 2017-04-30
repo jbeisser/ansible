@@ -78,7 +78,7 @@
     - ettercap
     - httping
     - nmap
-    - pgp
+    - gpg
     - sshuttle
     - tor
     - torsocks

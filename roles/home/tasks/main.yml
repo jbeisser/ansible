@@ -20,3 +20,9 @@
     group: "{{ ansible_real_group_id }}"
     mode: 0640
 
+- name: Create .bashrc if it doesn't exist
+  copy:
+    src: files/bashrc
+    dest: "{{ ansible_env.HOME }}/.bashrc"
+    mode: 0640
+

@@ -16,6 +16,7 @@
   lineinfile:
     path: "{{ ansible_env.HOME }}/.bashrc"
     line: 'export PYENV_ROOT="$HOME/.pyenv"'
+    create: yes
     state: present
 
 - name: Set PATH variable
