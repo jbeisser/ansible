@@ -13,11 +13,9 @@
     mode: 0750
 
 - name: Copy tmux config
-  copy:
-    src: files/tmux.conf
+  template:
+    src: files/tmux.conf.j2
     dest: "{{ ansible_env.HOME }}/.tmux.conf"
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_real_group_id }}"
     mode: 0640
 
 - name: Create .bashrc if it doesn't exist
@@ -26,3 +24,14 @@
     dest: "{{ ansible_env.HOME }}/.bashrc"
     mode: 0640
 
+- name: Create .profile if it doesn't exist
+  copy:
+    src: files/bashrc
+    dest: "{{ ansible_env.HOME }}/.profile"
+    mode: 0640
+
+- name: Set environment time zone.
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.profile"
+    line: 'TZ={{ user_tz }}'
+    state: present

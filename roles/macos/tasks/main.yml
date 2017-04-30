@@ -3,3 +3,4 @@
   with_items:
    - defaults.yml
    - brew.yml
+   - home.yml

@@ -6,28 +6,32 @@
   shell: "test -x $(which pyenv) && echo 'yes'"
   register: pyenv_present
 
+- name: Is pyenv-virtualenv installed
+  shell: "test -x $(which pyenv-virtualenv) && echo 'yes'"
+  register: pyenv_virtualenv_present
+
 - name: Install pyenv via git.
   git:
     repo: 'git://github.com/yyuu/pyenv.git'
     dest: "{{ ansible_env.HOME }}/.pyenv/ }}"
   when: pyenv_present|failed
 
-- name: Set up bashrc
+- name: Set up profile
   lineinfile:
-    path: "{{ ansible_env.HOME }}/.bashrc"
+    path: "{{ ansible_env.HOME }}/.profile"
     line: 'export PYENV_ROOT="$HOME/.pyenv"'
     create: yes
     state: present
 
 - name: Set PATH variable
   lineinfile:
-    path: "{{ ansible_env.HOME }}/.bashrc"
+    path: "{{ ansible_env.HOME }}/.profile"
     line: 'export PATH=$PYENV_ROOT/bin:$PATH'
     state: present
 
 - name: Get EVAL in place
   lineinfile:
-    path: "{{ ansible_env.HOME }}/.bashrc"
+    path: "{{ ansible_env.HOME }}/.profile"
     line: 'eval "$(pyenv init -)"'
     state: present
 
@@ -35,10 +39,11 @@
   git:
     repo: 'https://github.com/pyenv/pyenv-virtualenv.git'
     dest: "{{ ansible_env.HOME }}/.pyenv/plugins/pyenv-virtualenv"
+  when: pyenv_virtualenv_present|failed
 
 - name: Set pyenv-virtualenv eval.
   lineinfile:
-    path: "{{ ansible_env.HOME }}/.bashrc"
+    path: "{{ ansible_env.HOME }}/.profile"
     line: 'eval "$(pyenv virtualenv-init -)"'
     state: present
     insertafter: '^eval "$(pyenv init -)"'
