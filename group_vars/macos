@@ -1,0 +1,4 @@
+---
+# We're setting this since `$(brew --prefix)` sometimes fails
+brew_root: /usr/local
+brew_bin: "{{ brew_root }}/bin/brew"

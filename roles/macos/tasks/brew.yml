@@ -15,6 +15,7 @@
 
 - name: Install Casks
   homebrew_cask: name={{ item }} state=installed
+  ignore_errors: yes
   with_items:
     - caffeine
     - crashplan
@@ -52,6 +53,7 @@
     - tmux
     - irssi
     - speedtest_cli
+    - bash-completion
     - brew-cask-completion
     - docker-completion
     - pip-completion
