@@ -23,12 +23,14 @@
     src: files/bashrc
     dest: "{{ ansible_env.HOME }}/.bashrc"
     mode: 0640
+    force: no
 
 - name: Create .profile if it doesn't exist
   copy:
     src: files/bashrc
     dest: "{{ ansible_env.HOME }}/.profile"
     mode: 0640
+    force: no
 
 - name: Set environment time zone.
   lineinfile:
