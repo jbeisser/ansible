@@ -9,7 +9,7 @@ The main two files are `macos.yml` and `remotes.yml`.
 `macos.yml` - provisions a Mac laptop or desktop.  
 `remotes.yml` - provisions a remote workstation or host.  
 
-`macos.yml` can remote provision a host as long as `homebrew` is already installed.
+`macos.yml` can remote provision a host as long as `homebrew` is already installed. This may change.
 
 #### MacOS
 To test the playbook:  
@@ -18,7 +18,8 @@ To test the playbook:
 To install:  
     `ansible-playbook -i "localhost," -c local --ask-become-pass ./macos.yml`
 
-#### Remotes shells
+#### Remote shell server
+Only configures a remote home directory and environment.
     `ansible-playbook -i "<foobar>," ./remotes.yml`
 
 #### Settings.
