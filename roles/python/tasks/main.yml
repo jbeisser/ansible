@@ -4,10 +4,14 @@
 
 - name: Is pyenv installed
   shell: "test -x $(which pyenv) && echo 'yes'"
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
   register: pyenv_present
 
 - name: Is pyenv-virtualenv installed
   shell: "test -x $(which pyenv-virtualenv) && echo 'yes'"
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
   register: pyenv_virtualenv_present
 
 - name: Install pyenv via git.
