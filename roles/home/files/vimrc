@@ -81,5 +81,3 @@ set autoindent		" always set autoindenting on
 set et
 set sw=2
 set smarttab
-
-call pathogen#infect()
