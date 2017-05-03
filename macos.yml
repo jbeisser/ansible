@@ -1,6 +1,8 @@
 ---
 - hosts: all
   vars:
+    # brew settings for macos
+    brew_install: yes
     brew_root: /usr/local
   roles:
     - home
