@@ -24,16 +24,22 @@
     - google-chrome
     - evernote
     - ios-console
-    - istumbler
     - iterm2
     - kitematic
     - mactex
     - postman
     - slack
     - transmission
+    - xquartz
+
+- name: Install MacBook Specific Casks
+  homebrew_cask: name={{ item }} state=installed
+  ignore_errors: yes
+  when: macbook|succeeded
+  with_items:
+    - istumbler
     - tuntap
     - tunnelblick
-    - xquartz
 
 - name: Install VM stuff
   homebrew_cask: name={{ item }} state=installed

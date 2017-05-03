@@ -37,3 +37,10 @@
     path: "{{ ansible_env.HOME }}/.profile"
     line: 'TZ={{ user_tz }}'
     state: present
+
+- name: Copy over vimrc
+  copy:
+    src: files/vimrc
+    dest: "{{ ansible_env.HOME }}/.vimrc"
+    mode: 0640
+    force: yes

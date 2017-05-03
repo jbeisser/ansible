@@ -1,10 +1,19 @@
 ---
 - hosts: all
+
   vars:
     # brew settings for macos
     brew_install: yes
     brew_root: /usr/local
+
+  pre_tasks:
+    - name: Is this a MacBook?
+      shell: "echo Well, is it?"
+      when: ansible_model.find('MacBook') != -1
+      register: macbook
+
   roles:
     - home
     - macos
     - python
+
