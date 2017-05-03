@@ -3,7 +3,7 @@
 # specific changes for MacOS
 
 - name: Check if bash-completion is in place.
-  shell: "test -f $(brew --prefix)/etc/bash_completion && echo 'yes'"
+  shell: "test -f {{ brew_root}}/etc/bash_completion && echo 'yes'"
   environment:
     PATH: "/usr/local/bin:{{ ansible_env.USER }}/bin:{{ ansible_env.PATH }}"
   register: completion

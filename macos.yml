@@ -1,5 +1,7 @@
 ---
 - hosts: all
+  vars:
+    brew_root: /usr/local
   roles:
     - home
     - macos
