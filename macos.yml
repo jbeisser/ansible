@@ -8,7 +8,7 @@
 
   pre_tasks:
     - name: Is this a MacBook?
-      shell: "echo Well, is it?"
+      shell: "echo no"
       when: ansible_model.find('MacBook') != -1
       register: macbook
 

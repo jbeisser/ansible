@@ -34,8 +34,7 @@
 
 - name: Install MacBook Specific Casks
   homebrew_cask: name={{ item }} state=installed
-  ignore_errors: yes
-  when: macbook|succeeded
+  when: ansible_model.find("MacBook") != -1
   with_items:
     - istumbler
     - tuntap
