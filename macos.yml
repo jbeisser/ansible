@@ -6,12 +6,6 @@
     brew_install: yes
     brew_root: /usr/local
 
-  pre_tasks:
-    - name: Is this a MacBook?
-      shell: "echo no"
-      when: ansible_model.find('MacBook') != -1
-      register: macbook
-
   roles:
     - home
     - macos

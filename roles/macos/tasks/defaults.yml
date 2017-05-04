@@ -34,3 +34,20 @@
 
 - name: Set "nohidden" on ~/Library
   command: chflags nohidden ~/Library
+
+- name: Set Caffeine default time
+  osx_defaults:
+    domain: com.lightheadsw.Caffeine
+    key: DefaultDuration
+    type: int
+    value: 60
+    state: present
+
+- name: Turn off Caffeine startup menu
+  osx_defaults:
+    domain: com.lightheadsw.Caffeine
+    key: SuppressLaunchMessage
+    type: bool
+    value: true
+    state: present
+
