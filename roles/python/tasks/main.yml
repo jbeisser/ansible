@@ -20,37 +20,14 @@
     dest: "{{ ansible_env.HOME }}/.pyenv/ }}"
   when: pyenv_present|failed
 
-- name: Set up profile
-  lineinfile:
+- name: Text block for .profile
+  blockinfile:
     path: "{{ ansible_env.HOME }}/.profile"
-    line: 'export PYENV_ROOT="$HOME/.pyenv"'
-    create: yes
-    state: present
-
-- name: Get EVAL in place
-  lineinfile:
-    path: "{{ ansible_env.HOME }}/.profile"
-    line: 'eval "$(pyenv init -)"'
-    state: present
-
-- name: Install pyenv-virtualenv
-  git:
-    repo: 'https://github.com/pyenv/pyenv-virtualenv.git'
-    dest: "{{ ansible_env.HOME }}/.pyenv/plugins/pyenv-virtualenv"
-  when: pyenv_virtualenv_present|failed
-
-- name: Set pyenv-virtualenv eval.
-  lineinfile:
-    path: "{{ ansible_env.HOME }}/.profile"
-    line: 'eval "$(pyenv virtualenv-init -)"'
-    state: present
-    insertafter: '^eval "$(pyenv init -)"'
-
-- name: Set PATH variable
-  lineinfile:
-    path: "{{ ansible_env.HOME }}/.profile"
-    line: 'export PATH="$PYENV_ROOT/bin:$PATH"'
-    state: present
+    block: |
+      export PYENV_ROOT="$HOME/.pyenv"
+      export PATH="$PYENV_ROOT/bin:$PATH"
+      eval "$(pyenv init -)"
+      eval "$(pyenv virtualenv-init -)"
 
 #- name: install specific versions for pyenv
 #  shell: pyenv install 2.7.13'

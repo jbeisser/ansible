@@ -6,6 +6,12 @@
     state: directory
     mode: 0750
 
+- name: tmux-cssh?!
+  get_url:
+    url: https://raw.githubusercontent.com/dennishafemann/tmux-cssh/master/tmux-cssh
+    dest: "{{ ansible_env.HOME }}/bin"
+    mode: 0755
+
 - name: Create $HOME/projects
   file:
     path: "{{ ansible_env.HOME }}/projects"
