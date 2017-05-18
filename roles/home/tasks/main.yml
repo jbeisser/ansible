@@ -24,6 +24,12 @@
     state: directory
     mode: 0700
 
+- name: Copy over ~/.ssh/rc
+  copy:
+    src: files/sshrc
+    dest: "{{ ansible_env.HOME }}/.ssh/rc"
+    mode: 0700
+
 - name: Copy tmux config
   template:
     src: files/tmux.conf.j2
