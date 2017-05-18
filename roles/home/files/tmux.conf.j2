@@ -16,3 +16,8 @@ set -g mode-mouse on
 set -g mouse-select-window on
 set -g mouse-select-pane on
 set -g mouse-resize-pane on
+
+# SSH AUTH SOCK shouldn't be set
+set -g update-environment -r
+setenv -u SSH_AUTH_SOCK
+setenv -g SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock.${HOSTNAME}
