@@ -1,5 +1,5 @@
 #!/bin/bash
 # For tmux, et al. We link to the auth socket, then overwrite the environment
-if [ $SSH_AUTH_SOCK ];
+if [ $SSH_AUTH_SOCK ]; then
   ln -sf $SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock.${HOSTNAME}
 fi
