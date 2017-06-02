@@ -53,7 +53,7 @@
 - name: Set environment time zone.
   lineinfile:
     path: "{{ ansible_env.HOME }}/.profile"
-    line: 'TZ={{ user_tz }}'
+    line: 'export TZ={{ user_tz }}'
     state: present
 
 - name: Copy over vimrc
