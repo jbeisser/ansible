@@ -1,0 +1,22 @@
+---
+# tmux setup
+- name: test version
+  shell: tmux -V | awk '{print $2}'
+  register: tmux_version
+
+- name: copy over tmux2 config file
+  template:
+    src: files/tmux2.conf.j2
+    dest: "{{ ansible_env.HOME }}/.tmux.conf"
+    mode: 0740
+  register: tmux_conf_present
+  when:
+    - tmux_version.stdout.find('2.') == 1 or tmux_version_stdout == 'master'
+
+- name: Copy over tmux1 config file
+  template:
+    src: files/tmux.conf.j2
+    dest: "{{ ansible_env.HOME }}/.tmux.conf"
+    mode: 0740
+  when:
+    - ( tmux_conf_present not defined and tmux_version.stdout.find('2.') == -1 )

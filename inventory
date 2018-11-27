@@ -1,2 +1,6 @@
 [localhost]
 127.0.0.1
+
+[shells]
+opsutil.corp.offermatica.com
+shell.caustic.org

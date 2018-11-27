@@ -78,6 +78,7 @@
     - packer
     - saltstack
     - terraform
+    - xhyve
     - dockviz
 
 - name: Install Security/Privacy Tools

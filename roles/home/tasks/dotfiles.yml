@@ -1,0 +1,35 @@
+---
+- name: SSH RC
+  copy:
+    src: files/sshrc
+    dest: "{{ ansible.HOME }}/.ssh/rc"
+    mode: 0700
+  when: dirs is present
+
+# tmux is managed elsewhere
+
+- name: BASHRC
+  copy:
+    src: files/bashrc
+    dest: "{{ ansible_env.HOME }}/.bashrc"
+    mode: 0640
+    force: no
+  register: bashrc
+
+- name: TIMEZONE
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    line: "export TZ={{ user_tz }}"
+    state: present
+  when: bashrc is present
+
+- name: VIMRC
+  copy:
+    src: files/vimrc
+    dest: "{{ ansible_env.HOME }}/.vimrc"
+    mode: 0640
+    force: yes
+
+- debug:
+    var: "{{ bashrc }}"
+  when: debug == true

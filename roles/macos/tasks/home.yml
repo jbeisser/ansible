@@ -9,14 +9,14 @@
   register: completion
 
 - name: Add completions to .profile
-  when:
-    - ansible_distribution == "MacOSX"
-    - ansible_pkg_mgr == "homebrew"
-    - completion
   blockinfile:
     path: "{{ ansible_env.HOME }}/.profile"
     block: |
       if [ -f $(brew --prefix)/etc/bash_completion ]; then
          . $(brew --prefix)/etc/bash_completion
       fi
+  when:
+    - ansible_distribution == "MacOSX"
+    - ansible_pkg_mgr == "homebrew"
+    - completion
 

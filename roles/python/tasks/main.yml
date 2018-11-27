@@ -7,18 +7,20 @@
   environment:
     PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
   register: pyenv_present
+  ignore_errors: True
 
 - name: Is pyenv-virtualenv installed
   shell: "test -x $(which pyenv-virtualenv) && echo 'yes'"
   environment:
     PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
   register: pyenv_virtualenv_present
+  ignore_errors: True
 
 - name: Install pyenv via git.
   git:
     repo: 'git://github.com/yyuu/pyenv.git'
     dest: "{{ ansible_env.HOME }}/.pyenv/ }}"
-  when: pyenv_present|failed
+  when: pyenv_present
 
 - name: Text block for .profile
   blockinfile:

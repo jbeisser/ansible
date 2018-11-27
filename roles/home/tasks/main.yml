@@ -1,64 +1,7 @@
 ---
 
-- name: Create $HOME/bin
-  file: 
-    path: "{{ ansible_env.HOME }}/bin"
-    state: directory
-    mode: 0750
-
-- name: tmux-cssh?!
-  get_url:
-    url: https://raw.githubusercontent.com/dennishafemann/tmux-cssh/master/tmux-cssh
-    dest: "{{ ansible_env.HOME }}/bin"
-    mode: 0755
-
-- name: Create $HOME/projects
-  file:
-    path: "{{ ansible_env.HOME }}/projects"
-    state: directory
-    mode: 0750
-
-- name: Set the mode for .ssh (or create the directory)
-  file:
-    path: "{{ ansible_env.HOME }}/.ssh"
-    state: directory
-    mode: 0700
-
-- name: Copy over ~/.ssh/rc
-  copy:
-    src: files/sshrc
-    dest: "{{ ansible_env.HOME }}/.ssh/rc"
-    mode: 0700
-
-- name: Copy tmux config
-  template:
-    src: files/tmux.conf.j2
-    dest: "{{ ansible_env.HOME }}/.tmux.conf"
-    mode: 0640
-
-- name: Create .bashrc if it doesn't exist
-  copy:
-    src: files/bashrc
-    dest: "{{ ansible_env.HOME }}/.bashrc"
-    mode: 0640
-    force: no
-
-- name: Create .profile if it doesn't exist
-  copy:
-    src: files/bashrc
-    dest: "{{ ansible_env.HOME }}/.profile"
-    mode: 0640
-    force: no
-
-- name: Set environment time zone.
-  lineinfile:
-    path: "{{ ansible_env.HOME }}/.profile"
-    line: 'export TZ={{ user_tz }}'
-    state: present
-
-- name: Copy over vimrc
-  copy:
-    src: files/vimrc
-    dest: "{{ ansible_env.HOME }}/.vimrc"
-    mode: 0640
-    force: yes
+- include: "{{ item }}.yml"
+    loop:
+      - dirs
+      - dotfiles
+      - tmux
