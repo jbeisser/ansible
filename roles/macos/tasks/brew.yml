@@ -17,17 +17,14 @@
 - name: Install Casks
   homebrew_cask: name={{ item }} state=installed
   ignore_errors: yes
-  with_items:
+  loop:
     - caffeine
-    - crashplan
     - docker
     - google-chrome
+    - firefox
     - evernote
-    - ios-console
     - iterm2
     - kitematic
-    - mactex
-    - postman
     - slack
     - transmission
     - xquartz
@@ -35,27 +32,29 @@
 - name: Install MacBook Specific Casks
   homebrew_cask: name={{ item }} state=installed
   when: ansible_model.find("MacBook") != -1
-  with_items:
+  loop:
     - istumbler
     - tuntap
     - tunnelblick
 
 - name: Install VM stuff
   homebrew_cask: name={{ item }} state=installed
-  with_items:
+  loop:
     - virtualbox
     - virtualbox-extension-pack
     - vagrant
+    - docker-machine
+    - docker-machine-driver-xhyve
 
 - name: Install Music Stuff
   homebrew_cask: name={{ item }} state=installed
-  with_items:
+  loop:
     - sonos
     - spotify
 
 - name: Install Shell Tools
   homebrew: name={{ item }} state=latest
-  with_items:
+  loop:
     - tmux
     - irssi
     - speedtest_cli
@@ -67,23 +66,22 @@
 
 - name: Install compilers
   homebrew: name={{ item }} state=latest
-  with_items:
+  loop:
     - go
 
 - name: Install DevOps Tools
   homebrew: name={{ item }} state=latest
-  with_items:
+  loop:
     - awscli
     - amazon-ecs-cli
     - packer
-    - saltstack
     - terraform
     - xhyve
     - dockviz
 
 - name: Install Security/Privacy Tools
   homebrew: name={{ item }} state=latest
-  with_items:
+  loop:
     - ettercap
     - httping
     - nmap
