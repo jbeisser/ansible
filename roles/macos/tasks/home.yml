@@ -5,16 +5,16 @@
 - name: Check if brew's bash-completion is in place.
   shell: "test -f {{ brew_root}}/etc/bash_completion && echo 'yes'"
   environment:
-    PATH: "{{ brew_root }}/bin:{{ ansible_env.USER }}/bin:{{ ansible_env.PATH }}"
+    PATH: "{{ brew_root }}/bin:{{ ansible_user_dir }}/bin:{{ ansible_env.PATH }}"
   register: completion
 
 - name: Add completions to .profile
   blockinfile:
-    path: "{{ ansible_env.HOME }}/.bashrc"
+    path: "{{ ansible_user_dir }}/.bashrc"
     block: |
       if [ -f $(brew --prefix)/etc/bash_completion ]; then
          . $(brew --prefix)/etc/bash_completion
       fi
   when:
-    - ansible_distribution == "MacOSX" and ansible_pkg_mgr == "homebrew" and completion is present
+    - ansible_distribution == "MacOSX" and ansible_pkg_mgr == "homebrew" and completion
 

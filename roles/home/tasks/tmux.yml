@@ -3,12 +3,12 @@
 - name: test version
   shell: tmux -V
   environment:
-    PATH: "{{ ansible_user_dir }}/bin:$PATH"
+    PATH: "{{ ansible_user_dir }}/bin:{{ ansible_env.PATH }}"
   register: tmux_version
 
 - debug:
     var: tmux_version
-  when: debug
+  when: debug == 'true'
 
 - name: copy over tmux2 config file
   template:

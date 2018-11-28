@@ -1,21 +1,21 @@
 ---
 # brew components
 #
+- name: Update Homebrew
+  homebrew: update_homebrew=yes upgrade_all=no
 
 - name: Brew taps.
-  homebrew_tap: tap={{ item }} state=present
-  with_items:
+  homebrew_tap: tap={{ taps }} state=present
+  loop:
     - caskroom/cask
     - homebrew/completions
     - homebrew/science
     - homebrew/python
-
-
-- name: Update Homebrew
-  homebrew: update_homebrew=yes upgrade_all=no
+  loop_control:
+    loop_var: taps
 
 - name: Install Casks
-  homebrew_cask: name={{ item }} state=installed
+  homebrew_cask: name={{ casks }} state=installed
   ignore_errors: yes
   loop:
     - caffeine
@@ -28,32 +28,41 @@
     - slack
     - transmission
     - xquartz
+    - pycharm-ce
+  loop_control:
+    loop_var: casks
 
-- name: Install MacBook Specific Casks
-  homebrew_cask: name={{ item }} state=installed
+- name: Install MacBook Specific apps
+  homebrew_cask: name={{ laptops }} state=installed
   when: ansible_model.find("MacBook") != -1
   loop:
     - istumbler
     - tuntap
     - tunnelblick
+  loop_control:
+    loop_var: laptops
 
 - name: Install VM stuff
-  homebrew_cask: name={{ item }} state=installed
+  homebrew_cask: name={{ vms }} state=installed
   loop:
     - virtualbox
     - virtualbox-extension-pack
     - vagrant
     - docker-machine
     - docker-machine-driver-xhyve
+  loop_control:
+    loop_var: vms
 
 - name: Install Music Stuff
-  homebrew_cask: name={{ item }} state=installed
+  homebrew_cask: name={{ musics }} state=installed
   loop:
     - sonos
     - spotify
+  loop_control:
+    loop_var: musics
 
 - name: Install Shell Tools
-  homebrew: name={{ item }} state=latest
+  homebrew: name={{ shells }} state=latest
   loop:
     - tmux
     - irssi
@@ -63,14 +72,19 @@
     - docker-completion
     - pip-completion
     - vagrant-completion
+  loop_control:
+    loop_var: shells
 
 - name: Install compilers
-  homebrew: name={{ item }} state=latest
+  homebrew: name={{ compilers }} state=latest
   loop:
     - go
+  loop_control:
+    loop_var: compilers
+
 
 - name: Install DevOps Tools
-  homebrew: name={{ item }} state=latest
+  homebrew: name={{ devops }} state=latest
   loop:
     - awscli
     - amazon-ecs-cli
@@ -78,9 +92,11 @@
     - terraform
     - xhyve
     - dockviz
+  loop_control:
+    loop_var: devops
 
 - name: Install Security/Privacy Tools
-  homebrew: name={{ item }} state=latest
+  homebrew: name={{ securitys }} state=latest
   loop:
     - ettercap
     - httping
@@ -89,4 +105,6 @@
     - sshuttle
     - tor
     - torsocks
+  loop_control:
+    loop_var: securitys
 

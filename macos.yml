@@ -1,5 +1,6 @@
 ---
-- hosts: all
+- hosts: localhost
+  connection: local
 
   vars:
     # brew settings for macos
@@ -8,16 +9,13 @@
 
   pre_tasks:
     - name: Laptop?
+      shell: echo "yes"
       register: macbook
       when:
         - (ansible_model.find('MacBook') != -1 and ansible_distribution == "MacOSX")
 
-  tasks:
-    - include_role:
-        name: macos
-        when: macbook is present
-
   roles:
+    - macos
     - home
     - python
 

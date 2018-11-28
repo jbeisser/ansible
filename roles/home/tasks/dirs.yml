@@ -1,14 +1,16 @@
 ---
 - name: Create dirs.
   file:
-    path: "{{ ansible_user_dir }}/{{ item.name }}"
+    path: "{{ ansible_user_dir }}/{{ dir.name }}"
     state: directory
-    mode: "{{ item.mode }}"
+    mode: "{{ dir.mode }}"
   loop:
     - { name: 'bin', mode: '0750' }
     - { name: 'projects', mode: '0750' }
     - { name: '.ssh', mode: '0700' }
   register: dirs
+  loop_control:
+    loop_var: dir
 
 - name: Debug
   debug:
