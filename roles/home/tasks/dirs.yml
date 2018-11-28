@@ -1,17 +1,17 @@
 ---
 - name: Create dirs.
   file:
-    path: "{{ ansible_env.HOME }}/{{ item.name }}"
+    path: "{{ ansible_user_dir }}/{{ item.name }}"
     state: directory
-    mode: "{{ item.perms }}"
+    mode: "{{ item.mode }}"
   loop:
-    - "{ name: 'bin', perms: '0750' }"
-    - "{ name: 'projects', perms: '0750' }"
-    - "{ name: '.ssh', perms: '0700' }"
+    - { name: 'bin', mode: '0750' }
+    - { name: 'projects', mode: '0750' }
+    - { name: '.ssh', mode: '0700' }
   register: dirs
 
-- debug:
-    msg: dirs: {{ dirs }}
-    var: "{{ dirs }}"
+- name: Debug
+  debug:
+    var: dirs
     verbosity: 2
-  when: debug == true
+  when: debug == "true"

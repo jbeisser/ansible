@@ -6,8 +6,18 @@
     brew_install: yes
     brew_root: /usr/local
 
+  pre_tasks:
+    - name: Laptop?
+      register: macbook
+      when:
+        - (ansible_model.find('MacBook') != -1 and ansible_distribution == "MacOSX")
+
+  tasks:
+    - include_role:
+        name: macos
+        when: macbook is present
+
   roles:
     - home
-    - macos
     - python
 
