@@ -12,6 +12,8 @@
     - aws/tap
   loop_control:
     loop_var: taps
+  tags:
+    - taps
 
 - name: Install Casks
   homebrew_cask: name={{ casks }} state=present
@@ -28,6 +30,8 @@
     - pycharm-ce
   loop_control:
     loop_var: casks
+  tags:
+    - casks
 
 - name: Install MacBook Specific casks
   homebrew_cask: name={{ laptops }} state=present
@@ -39,6 +43,8 @@
     - tunnelblick
   loop_control:
     loop_var: laptops
+  tags:
+    - casks
 
 - name: Install VM stuff
   homebrew_cask: name={{ vms }} state=present
@@ -49,8 +55,10 @@
     - vagrant
   loop_control:
     loop_var: vms
+  tags:
+    - casks
 
-- name: Install Music Stuff
+- name: Install music casks
   homebrew_cask: name={{ musics }} state=present
   ignore_errors: yes
   loop:
@@ -58,19 +66,27 @@
     - spotify
   loop_control:
     loop_var: musics
+  tags:
+    - casks
 
 - name: Install Shell Tools
   homebrew: name={{ shells }} state=latest
   loop:
     - tmux
-    - speedtest_cli
     - bash-completion
     - brew-cask-completion
     - docker-completion
     - pip-completion
     - vagrant-completion
+    - launchctl-completion
+    - docker-compose-completion
+    - docker-machine-completion
+    - packer-completion
   loop_control:
     loop_var: shells
+  tags:
+    - brew
+    - shell
 
 - name: Install compilers
   homebrew: name={{ compilers }} state=latest
@@ -78,6 +94,9 @@
     - go
   loop_control:
     loop_var: compilers
+  tags:
+    - brew
+    - compiler
 
 - name: Install DevOps Tools
   homebrew: name={{ devops }} state=latest
@@ -90,9 +109,13 @@
     - dockviz
     - docker-machine
     - docker-machine-driver-xhyve # requires chmod/SUID
+    - speedtest_cli
     - aws/tap/aws-sam-cli
   loop_control:
     loop_var: devops
+  tags:
+    - brew
+    - devops
 
 - name: Install Security/Privacy Tools
   homebrew: name={{ securitys }} state=latest
@@ -106,4 +129,7 @@
     - torsocks
   loop_control:
     loop_var: securitys
+  tags:
+    - brew
+    - security
 
