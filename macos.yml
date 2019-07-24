@@ -17,5 +17,5 @@
   roles:
     - macos
     - home
-    - python
+    # - python  // disabled for now due to significant revamp in how pyenv is leveraged.
 

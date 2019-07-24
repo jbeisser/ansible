@@ -7,34 +7,32 @@
 - name: Brew taps.
   homebrew_tap: tap={{ taps }} state=present
   loop:
-    - caskroom/cask
-    - homebrew/completions
-    - homebrew/science
-    - homebrew/python
+    - caskroom/cask # may not be needed anymore
+    - homebrew/cask-drivers
+    - aws/tap
   loop_control:
     loop_var: taps
 
 - name: Install Casks
-  homebrew_cask: name={{ casks }} state=installed
+  homebrew_cask: name={{ casks }} state=present
   ignore_errors: yes
   loop:
     - caffeine
     - docker
-    - google-chrome
     - firefox
     - evernote
     - iterm2
     - kitematic
     - slack
     - transmission
-    - xquartz
     - pycharm-ce
   loop_control:
     loop_var: casks
 
-- name: Install MacBook Specific apps
-  homebrew_cask: name={{ laptops }} state=installed
+- name: Install MacBook Specific casks
+  homebrew_cask: name={{ laptops }} state=present
   when: ansible_model.find("MacBook") != -1
+  ignore_errors: yes
   loop:
     - istumbler
     - tuntap
@@ -43,18 +41,18 @@
     loop_var: laptops
 
 - name: Install VM stuff
-  homebrew_cask: name={{ vms }} state=installed
+  homebrew_cask: name={{ vms }} state=present
+  ignore_errors: yes
   loop:
     - virtualbox
     - virtualbox-extension-pack
     - vagrant
-    - docker-machine
-    - docker-machine-driver-xhyve
   loop_control:
     loop_var: vms
 
 - name: Install Music Stuff
-  homebrew_cask: name={{ musics }} state=installed
+  homebrew_cask: name={{ musics }} state=present
+  ignore_errors: yes
   loop:
     - sonos
     - spotify
@@ -65,7 +63,6 @@
   homebrew: name={{ shells }} state=latest
   loop:
     - tmux
-    - irssi
     - speedtest_cli
     - bash-completion
     - brew-cask-completion
@@ -82,7 +79,6 @@
   loop_control:
     loop_var: compilers
 
-
 - name: Install DevOps Tools
   homebrew: name={{ devops }} state=latest
   loop:
@@ -92,6 +88,9 @@
     - terraform
     - xhyve
     - dockviz
+    - docker-machine
+    - docker-machine-driver-xhyve # requires chmod/SUID
+    - aws/tap/aws-sam-cli
   loop_control:
     loop_var: devops
 
