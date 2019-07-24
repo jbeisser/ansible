@@ -1,4 +1,9 @@
 ---
 # global variables
 user_tz: America/Los_Angeles
-debug: true
+brew_state: latest
+brew_ignore_errors: no
+cask_state: present
+cask_ignore_errors: yes
+debug: yes
+

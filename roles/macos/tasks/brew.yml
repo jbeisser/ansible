@@ -6,6 +6,7 @@
 
 - name: Brew taps.
   homebrew_tap: tap={{ taps }} state=present
+  ignore_errors: "{{ brew_ignore_errors }}"
   loop:
     - caskroom/cask # may not be needed anymore
     - homebrew/cask-drivers
@@ -17,8 +18,8 @@
     - taps
 
 - name: Install Casks
-  homebrew_cask: name={{ casks }} state=present
-  ignore_errors: yes
+  homebrew_cask: name={{ casks }} state={{ cask_state }}
+  ignore_errors: "{{ cask_ignore_errors }}"
   loop:
     - caffeine
     - docker
@@ -36,9 +37,9 @@
     - casks
 
 - name: Install MacBook Specific casks
-  homebrew_cask: name={{ laptops }} state=present
+  homebrew_cask: name={{ laptops }} state={{ cask_state }}
   when: ansible_model.find("MacBook") != -1
-  ignore_errors: yes
+  ignore_errors: "{{ cask_ignore_errors }}"
   loop:
     - istumbler
     - tuntap
@@ -50,8 +51,8 @@
     - casks
 
 - name: Install VM stuff
-  homebrew_cask: name={{ vms }} state=present
-  ignore_errors: yes
+  homebrew_cask: name={{ vms }} state={{ cask_state }}
+  ignore_errors: "{{ cask_ignore_errors }}"
   loop:
     - virtualbox
     - virtualbox-extension-pack
@@ -63,8 +64,8 @@
     - casks
 
 - name: Install music casks
-  homebrew_cask: name={{ musics }} state=present
-  ignore_errors: yes
+  homebrew_cask: name={{ musics }} state={{ cask_state }}
+  ignore_errors: "{{ cask_ignore_errors }}"
   loop:
     - sonos
     - spotify
@@ -75,7 +76,8 @@
     - casks
 
 - name: Install Shell Tools
-  homebrew: name={{ shells }} state=latest
+  homebrew: name={{ shells }} state={{ brew_state }}
+  ignore_errors: "{{ brew_ignore_errors }}"
   loop:
     - tmux
     - bash-completion
@@ -94,7 +96,8 @@
     - shell
 
 - name: Install compilers
-  homebrew: name={{ compilers }} state=latest
+  homebrew: name={{ compilers }} state={{ brew_state }}
+  ignore_errors: "{{ brew_ignore_errors }}"
   loop:
     - go
   loop_control:
@@ -104,7 +107,8 @@
     - compiler
 
 - name: Install DevOps Tools
-  homebrew: name={{ devops }} state=latest
+  homebrew: name={{ devops }} state={{ brew_state }}
+  ignore_errors: "{{ brew_ignore_errors }}"
   loop:
     - awscli
     - amazon-ecs-cli
@@ -123,7 +127,8 @@
     - devops
 
 - name: Install Security/Privacy Tools
-  homebrew: name={{ securitys }} state=latest
+  homebrew: name={{ securitys }} state={{ brew_state }}
+  ignore_errors: "{{ brew_ignore_errors }}"
   loop:
     - ettercap
     - httping
