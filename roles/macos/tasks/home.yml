@@ -8,6 +8,9 @@
     PATH: "{{ brew_root }}/bin:{{ ansible_user_dir }}/bin:{{ ansible_env.PATH }}"
   register: completion
 
+- debug:
+    var: completion
+
 - name: Add completions to .profile
   blockinfile:
     path: "{{ ansible_user_dir }}/.bashrc"
@@ -24,5 +27,7 @@
         fi
       fi
   when:
-    - ansible_distribution == "MacOSX" and ansible_pkg_mgr == "homebrew" and completion
+    - ansible_distribution == "MacOSX" and ansible_pkg_mgr == "homebrew" and completion.stdout == "yes"
+  tags:
+    - completion
 

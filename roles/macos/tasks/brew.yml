@@ -13,6 +13,7 @@
   loop_control:
     loop_var: taps
   tags:
+    - brew
     - taps
 
 - name: Install Casks
@@ -31,6 +32,7 @@
   loop_control:
     loop_var: casks
   tags:
+    - brew
     - casks
 
 - name: Install MacBook Specific casks
@@ -44,6 +46,7 @@
   loop_control:
     loop_var: laptops
   tags:
+    - brew
     - casks
 
 - name: Install VM stuff
@@ -56,6 +59,7 @@
   loop_control:
     loop_var: vms
   tags:
+    - brew
     - casks
 
 - name: Install music casks
@@ -67,6 +71,7 @@
   loop_control:
     loop_var: musics
   tags:
+    - brew
     - casks
 
 - name: Install Shell Tools
