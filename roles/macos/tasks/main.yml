@@ -1,8 +1,15 @@
 ---
-- include: "{{ item }}.yml"
+- include_tasks: "{{ item }}.yml"
   loop:
    - defaults
    - brew
-   - home
-  when:
-    - ansible_distribution == "MacOSX" and ansible_system == "Darwin" and ansible_pkg_mgr == "homebrew"
+
+- name: Include devel-IntelliJ role
+  include_role:
+    name: devel
+    tasks_from: intellij
+
+- name: Include vm-Docker role
+  include_role:
+    name: vm
+    tasks_from: docker

@@ -1,0 +1,9 @@
+---
+- name: Install Intellij-IDEA
+  community.general.homebrew_cask:
+    name: intellij-idea
+    state: present
+
+- include_tasks: golang.yml
+- include_tasks: shell_tools.yml
+- include_tasks: git.yml

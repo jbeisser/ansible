@@ -1,0 +1,9 @@
+---
+- name: Install Wifi utils.
+  include_role:
+    name: utils
+    tasks_from: "{{ item }}"
+  loop:
+    - istumbler
+    - wireshark
+

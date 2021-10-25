@@ -1,0 +1,10 @@
+---
+- name: Install Docker Desktop
+  community.general.homebrew:
+    name: docker
+    state: present
+
+- name: Install dockviz
+  community.general.homebrew:
+    name: dockviz
+    state: latest

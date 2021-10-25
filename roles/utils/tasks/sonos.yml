@@ -1,0 +1,5 @@
+---
+- name: Install Sonos Controller
+  community.general.homebrew_cask:
+    name: sonos
+    state: present

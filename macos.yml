@@ -8,14 +8,27 @@
     brew_root: /usr/local
 
   pre_tasks:
-    - name: Laptop?
-      shell: echo "yes"
-      register: macbook
-      when:
-        - (ansible_model.find('MacBook') != -1 and ansible_distribution == "MacOSX")
+    - name: Create System groups
+      group_by: key="sys_{{ ansible_facts['system'] | lower }}"
+
+    - name: Create Hardware groups
+      group_by: key="hw_{{ ansible_model | lower | regex_search('([a-z]+)') }}"
+
+- hosts: sys_darwin
+  gather_facts: false
+  vars:
+    brew_root: /usr/local
 
   roles:
     - macos
-    - home
-    # - python  // disabled for now due to significant revamp in how pyenv is leveraged.
 
+- hosts: hw_macbookpro
+  gather_facts: false
+
+  roles:
+    - laptop
+
+- hosts: hw_macmini
+  gather_facts: false
+  roles:
+    - vm

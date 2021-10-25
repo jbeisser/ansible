@@ -1,0 +1,5 @@
+---
+- name: Install Steam
+  community.general.homebrew_cask:
+    name: steam
+    state: present

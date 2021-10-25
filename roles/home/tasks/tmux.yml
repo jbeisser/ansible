@@ -1,5 +1,4 @@
 ---
-# tmux setup
 - name: test version
   shell: tmux -V
   environment:

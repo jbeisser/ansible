@@ -1,0 +1,9 @@
+---
+
+- name: Install git-crypt
+  community.general.homebrew:
+    name: git-crypt
+
+- name: Install git-extras
+  community.general.homebrew:
+    name: git-extras

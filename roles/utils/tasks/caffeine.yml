@@ -1,0 +1,26 @@
+- name: Install Caffeine
+  community.general.homebrew_cask:
+    name: caffeine
+    state: present
+
+- name: Set DefaultDuration=60
+  community.general.osx_defaults:
+    domain: com.intelliscapesolutions.caffeine
+    key: DefaultDuration
+    type: int
+    value: "{{ caffeine_duration }}"
+    state: present
+
+- name: Set SuppressLaunchMessage=true
+  community.general.osx_defaults:
+    domain: com.intelliscapesolutions.caffeine
+    key: SuppressLaunchMessage
+    type: bool
+    value: true
+
+- name: Set ActivateOnLaunch=true
+  community.general.osx_defaults:
+    domain: com.intelliscapesolutions.caffeine
+    key: ActivateOnLaunch
+    type: bool
+    value: true

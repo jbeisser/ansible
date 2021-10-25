@@ -1,9 +1,15 @@
 ---
 # global variables
-user_tz: America/Los_Angeles
-brew_state: latest
-brew_ignore_errors: no
-cask_state: present
-cask_ignore_errors: yes
+system:
+    timezone: UTC
+
+user:
+    timezone: America/Los_Angeles
+
+homebrew:
+    brew_state: latest
+    brew_ignore_errors: no
+    cask_ignore_errors: yes
+
 debug: yes
 

@@ -1,0 +1,5 @@
+---
+- name: GoLang
+  community.general.homebrew:
+    name: "{{ golang_packages }}"
+    state: latest

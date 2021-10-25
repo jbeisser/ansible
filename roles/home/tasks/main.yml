@@ -1,7 +1,9 @@
 ---
 
-- include: "{{ item }}.yml"
+- include_tasks: "{{ item }}.yml"
   loop:
     - dirs
     - dotfiles
     - tmux
+
+- include_tasks: "os_{{ ansible_facts['distribution'] | lower }}.yml"

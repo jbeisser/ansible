@@ -1,0 +1,6 @@
+---
+- name: brew - Install common packages
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ common_packages }}"

@@ -1,0 +1,4 @@
+- name: Install Calibre
+  community.general.homebrew_cask:
+    name: calibre
+    state: present
