@@ -1,5 +1,4 @@
 ---
-# sets macOS defaults
 
 - name: Enable screensaver password
   community.general.osx_defaults:

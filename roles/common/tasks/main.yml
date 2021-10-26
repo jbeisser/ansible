@@ -1,6 +1,27 @@
 ---
-- name: brew - Install common packages
+- name: Install Mac App Store CLI
   community.general.homebrew:
-    name: "{{ item }}"
+    name: mas
     state: present
-  with_items: "{{ common_packages }}"
+
+- name: Install BASH completion
+  community.general.homebrew:
+    name: bash-completion
+    state: present
+
+- name: Install launchctl-completion
+  community.general.homebrew:
+    name: launchctl-completion
+    state: present
+
+- name: Install General Utilities
+  include_role:
+    name: utils
+    tasks_from: "{{ item }}"
+  loop:
+    - bitwarden
+    - pass
+    - firefox
+    - slack
+    - iterm
+    - evernote

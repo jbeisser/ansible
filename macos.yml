@@ -21,6 +21,7 @@
 
   roles:
     - macos
+    - common
 
 - hosts: hw_macbookpro
   gather_facts: false
@@ -30,5 +31,6 @@
 
 - hosts: hw_macmini
   gather_facts: false
+
   roles:
-    - vm
+    - desktop

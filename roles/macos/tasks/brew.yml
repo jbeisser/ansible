@@ -3,6 +3,3 @@
   community.general.homebrew:
     update_homebrew: yes
     upgrade_all: "{{ homebrew_upgrade_packages }}"
-
-- name: Install MAS
-  community.general.homebrew:

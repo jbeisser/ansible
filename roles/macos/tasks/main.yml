@@ -3,13 +3,3 @@
   loop:
    - defaults
    - brew
-
-- name: Include devel-IntelliJ role
-  include_role:
-    name: devel
-    tasks_from: intellij
-
-- name: Include vm-Docker role
-  include_role:
-    name: vm
-    tasks_from: docker

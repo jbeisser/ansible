@@ -7,3 +7,4 @@
 - include_tasks: golang.yml
 - include_tasks: shell_tools.yml
 - include_tasks: git.yml
+- include_tasks: yamllint.yml

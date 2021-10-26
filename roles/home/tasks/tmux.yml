@@ -1,4 +1,10 @@
 ---
+- name: Include tools/tmux
+  include_role:
+    name: tools
+    tasks_from: tmux
+  when: ansible_facts['distribution'] == "MacOSX"
+
 - name: test version
   shell: tmux -V
   environment:
