@@ -1,0 +1,10 @@
+---
+- name: Install Tor
+  community.general.homebrew:
+    name: tor
+    state: present
+
+- name: Install TorSocks
+  community.general.homebrew:
+    name: torsocks
+    state: present

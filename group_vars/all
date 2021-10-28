@@ -1,7 +1,9 @@
 ---
 # global variables
+user_dir: "{{ ansible_facts['user_dir'] }}"
 system:
     timezone: UTC
+    screensaver: true
 
 user:
     timezone: America/Los_Angeles
@@ -12,4 +14,3 @@ homebrew:
     cask_ignore_errors: yes
 
 debug: yes
-

@@ -20,8 +20,15 @@
     tasks_from: "{{ item }}"
   loop:
     - bitwarden
-    - pass
     - firefox
     - slack
     - iterm
     - evernote
+
+- name: Include General Tools
+  include_role:
+    name: tools
+    tasks_from: "{{ item }}"
+  loop:
+    - gnupg
+    - pass

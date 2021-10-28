@@ -3,3 +3,11 @@
   community.general.homebrew_cask:
     name: displaylink
     state: present
+
+- name: Set start on boot
+  community.general.osx_defaults:
+    domain: com.displaylink.DisplayLinkUserAgent
+    key: AppAutostart
+    type: bool
+    value: "{{ displaylink_autostart | defaults("false") }}"
+    state: present

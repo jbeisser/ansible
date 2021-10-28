@@ -1,1 +1,20 @@
 ---
+- name: Install dev utils
+  include_role:
+    name: utils
+    tasks_from: "{{ item }}"
+  loop:
+    - intellij
+    - openjdk
+    - ghidra
+
+- name: Install dev tools
+  include_role:
+    name: tools
+    tasks_from: "{{ item }}"
+  loop:
+    - git
+    - graphviz
+    - pyenv
+    - shell_check
+    - yamllint

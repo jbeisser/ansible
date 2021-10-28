@@ -24,5 +24,6 @@
     value: "H:mm"
 
 - name: Set "nohidden" on ~/Library
-  ansible.builtin.command: chflags nohidden ~/Library
+#  ansible.builtin.command: chflags nohidden ~/Library
+  ansible.builtin.command: chflags nohidden {{user_dir }}/Library
   become: true
