@@ -1,34 +1,24 @@
 ---
-- name: Install Mac App Store CLI
-  community.general.homebrew:
-    name: mas
-    state: present
 
-- name: Install BASH completion
-  community.general.homebrew:
-    name: bash-completion
-    state: present
-
-- name: Install launchctl-completion
-  community.general.homebrew:
-    name: launchctl-completion
-    state: present
-
-- name: Install General Utilities
-  include_role:
-    name: utils
-    tasks_from: "{{ item }}"
-  loop:
-    - bitwarden
-    - firefox
-    - slack
-    - iterm
-    - evernote
-
-- name: Include General Tools
+- name: include common tools
   include_role:
     name: tools
     tasks_from: "{{ item }}"
   loop:
+    - bash
+    - launchctl
+    - mas
     - gnupg
     - pass
+
+- name: install common utilities
+  include_role:
+    name: utils
+    tasks_from: "{{ item }}"
+  loop:
+    - authy
+    - bitwarden
+    - evernote
+    - firefox
+    - iterm
+    - slack

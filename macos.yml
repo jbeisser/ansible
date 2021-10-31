@@ -34,3 +34,12 @@
 
   roles:
     - desktop
+    - remotes
+
+- hosts: work
+  gather_facts: false
+
+  roles:
+    - devel
+    - utils
+    - tools

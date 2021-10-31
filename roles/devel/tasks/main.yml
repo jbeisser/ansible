@@ -5,8 +5,6 @@
     tasks_from: "{{ item }}"
   loop:
     - intellij
-    - openjdk
-    - ghidra
 
 - name: Install dev tools
   include_role:
@@ -18,3 +16,7 @@
     - pyenv
     - shell_check
     - yamllint
+
+- name: Install docker
+  include_role:
+    name: docker

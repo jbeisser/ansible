@@ -2,8 +2,9 @@
 # global variables
 user_dir: "{{ ansible_facts['user_dir'] }}"
 system:
-    timezone: UTC
+    timezone: America/Los_Angeles
     screensaver: true
+    ntp_server: tick.caustic.org
 
 user:
     timezone: America/Los_Angeles

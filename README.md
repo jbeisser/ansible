@@ -19,7 +19,7 @@ To run it:
 
 Explanations of roles
 ----
-`common`: Basic pieces of software that are on every macOS system  
+`common`: basic pieces of software that are on every macOS system  
 `macos`: basic settings for a macOS system. Configure brew, set screensaver behavior, etc  
 `desktop`: default utilities for desktop systems  
 `laptop`: default utilities for laptops  

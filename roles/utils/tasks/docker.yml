@@ -7,4 +7,4 @@
 - name: Install dockviz
   community.general.homebrew:
     name: dockviz
-    state: latest
+    state: present

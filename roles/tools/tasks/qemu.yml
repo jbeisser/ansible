@@ -2,4 +2,4 @@
 - name: Install QEMU
   community.general.homebrew:
     name: qemu
-    state: latest
+    state: present

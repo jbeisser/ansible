@@ -2,4 +2,5 @@
 - include_tasks: "{{ item }}.yml"
   loop:
    - defaults
+   - systemsetup
    - brew
