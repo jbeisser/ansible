@@ -9,9 +9,9 @@
     domain: com.amethyst.amethyst
     key: layouts
     type: array
-    value: tall, fullscreen, bsp
+    value: [tall, fullscreen, bsp]
 
--name: Amethyst disable mouse focus
+- name: Amethyst disable mouse focus
   community.general.osx_defaults:
     domain: com.amethyst.amethyst
     key: focus-follows-mouse

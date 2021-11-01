@@ -5,4 +5,3 @@
     tasks_from: "{{ item }}"
   loop:
     - wireshark
-    - steam

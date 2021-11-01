@@ -1,7 +1,7 @@
 ---
-- name: set time zone ({{ system.time_zone }}"
+- name: "set time zone ({{ system.time_zone }})"
   ansible.builtin.command:
-    cmd: systemsetup -settimezone "{{ system.time_zone }}"
+    cmd: systemsetup -settimezone {{ system.time_zone }}
   become: yes
 
 - name: use NTP
@@ -11,14 +11,14 @@
 
 - name: set NTP source
   ansible.builtin.command:
-    cmd: systemsetup -setnetworktimeserver "{{ system.ntp_server | default("time.apple.com") }}"
+    cmd: systemsetup -setnetworktimeserver {{ system.ntp_server | default('time.apple.com') }}
   become: yes
 
 - name: set display sleep (minutes)
   ansible.builtin.command:
-    cmd: systemsetup -setdisplaysleep "{{ system_display_sleep | default(10) }}"
+    cmd: systemsetup -setdisplaysleep {{ system_display_sleep | default(10) }}
   become: yes
 
 - name: set system sleep (minutes)
   ansible.builtin.command:
-    cmd: systemsetup -setcomputersleep "{{ system_computer_sleep | default(60) }}"
+    cmd: systemsetup -setcomputersleep {{ system_computer_sleep | default(60) }}

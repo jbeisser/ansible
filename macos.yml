@@ -14,6 +14,19 @@
     - name: Create Hardware groups
       group_by: key="hw_{{ ansible_model | lower | regex_search('([a-z]+)') }}"
 
+    - debug:
+        msg: "function: {{ function }}"
+
+    # add in via --extra-vars 'function="[\"foo\", \"bar\"]"'. Defined roles can then be added below
+    # current "functional" host_groups are "work" and "vpn". If not defined, it does nothing.
+    - name: Group by function
+      group_by: key="{{ item }}"
+      loop: "{{ function }}"
+      when: function is defined
+
+    - debug:
+        msg: "GROUPS: {{ groups }}"
+
 - hosts: sys_darwin
   gather_facts: false
   vars:
