@@ -1,0 +1,11 @@
+---
+# This is a very specific role that only applies to systems on the admin VLAN
+# ToDo: generalize this.
+- name: Manual conf of Ethernet
+  ansible.builtin.command: networksetup -setmanual Ethernet "{{ netadmin_address }} {{ netadmin_netmask }} {{ netadmin_gateway }}"
+
+- name: Create vlan0
+  ansible.builtin.command: networksetup -createvlan "{{ vlan0_name }} {{ vlan0_parent }} {{ vlan0_tag }}"
+
+- name: Configure vlan0 as DHCP
+  ansible.builtin.command: networksetup -setdhcp "{{ vlan0_name }} Configuration"

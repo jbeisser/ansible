@@ -54,5 +54,33 @@
 
   roles:
     - devel
-    - utils
-    - tools
+    - vm
+
+- hosts: ops
+  gather_facts: false
+
+  roles:
+    - devel
+    - operations
+    - network
+
+- hosts: secops
+  gather_facts: false
+
+  roles:
+    - devel
+#    - secops
+
+- hosts: netadmin
+  gather_facts: false
+
+  vars:
+    netadmin_address: "{{ netadmin.network.ethernet.address }}"
+    netadmin_netmask: "{{ netadmin.network.ethernet.netmask }}"
+    netadmin_gateway: "{{ netadmin.network.ethernet.gateway }}"
+    vlan0_parent: Ethernet
+    vlan0_name: "{{ netadmin.network.vlan0.name }}"
+    vlan0_tag: "{{ netadmin.network.vlan0.tag }}"
+
+  roles:
+    - netadmin

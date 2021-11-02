@@ -47,6 +47,7 @@ Change Log
 ----
 2021-11-01
 - add function host_group support.
+- add netadmin role.
 
 2021-10-30
 - unify various pieces under tools/utils that are specifically for software, etc.
