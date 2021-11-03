@@ -6,7 +6,7 @@ Goal here is to enable easy provisioning of an Apple Mac laptop, etc to be usefu
 The only real playbook is `macos.yml`
 
 The roles, etc do NOT consider operating systems outside of macOS with `homebrew` installed at this time. Some settings 
-require _root_ or _administrator_ permissions.
+require _root_ or _administrator_ permissions; generally this are flagged ahead of time.
 
 `macos.yml` - playbook to build a macOS system. 
 
@@ -45,6 +45,9 @@ Explanations of roles
 
 Change Log
 ----
+2021-11-03
+- fix vlan creation
+
 2021-11-01
 - add function host_group support.
 - add netadmin role.
