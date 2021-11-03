@@ -11,7 +11,7 @@
 
 - name: Install warrensbox/tap/tfswitch
   community.general.homebrew:
-    name: tfswtich
+    name: tfswitch
     state: present
 
 - name: Install latest terraform w/ tfswtich

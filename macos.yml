@@ -69,7 +69,14 @@
 
   roles:
     - devel
-#    - secops
+    - secops
+
+- hosts: home
+  gather_facts: false
+
+  roles:
+    - devel
+    - misc
 
 - hosts: netadmin
   gather_facts: false

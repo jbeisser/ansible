@@ -1,0 +1,12 @@
+---
+- name: work utils
+  include_role:
+    name: utils
+    tasks_from: "{{ item }}"
+  loop:
+    - zoom
+    - signal
+    - vlc
+    - docker
+    - displaylink
+    - caffeine
