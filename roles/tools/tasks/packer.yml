@@ -1,0 +1,10 @@
+---
+- name: Install packer
+  community.general.homebrew:
+    name: packer
+    state: present
+
+- name: Install packer-completion
+  community.general.homebrew:
+    name: packer-completion
+    state: present

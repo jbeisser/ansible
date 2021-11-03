@@ -1,0 +1,8 @@
+---
+- name: Install WiFi utils
+  include_role:
+    name: utils
+    tasks_from: "{{ item }}"
+  loop:
+    - istumbler
+

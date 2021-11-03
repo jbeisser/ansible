@@ -1,0 +1,5 @@
+---
+- name: Install Intellij-IDEA
+  community.general.homebrew_cask:
+    name: intellij-idea
+    state: present

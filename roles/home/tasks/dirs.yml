@@ -1,6 +1,6 @@
 ---
 - name: Create dirs.
-  file:
+  ansible.builtin.file:
     path: "{{ ansible_user_dir }}/{{ dir.name }}"
     state: directory
     mode: "{{ dir.mode }}"

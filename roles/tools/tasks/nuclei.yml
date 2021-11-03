@@ -1,0 +1,24 @@
+---
+- name: Install nuclei
+  community.general.homebrew:
+    name: nuclei
+    state: present
+
+- name: Create ~/.config/nuclei
+  ansible.builtin.file:
+    state: directory
+    name: "{{ user_dir }}/.config/nuclei"
+    mode: '0750'
+
+- name: create default nuclei config
+  ansible.builtin.template:
+    src: nuclei-config.yaml.j2
+    dest: "{{ user_dir }}/.config/nuclei/config.yaml
+    mode: '0640'
+  vars:
+    update_nuclei: false
+    update_community_templates: false
+    no_update_community_templates_check: true
+    template_directory: "{{ user_dir] }}/nuclei/templates"
+    nuclei_headers:
+      - "x-check: true"

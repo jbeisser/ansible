@@ -1,0 +1,10 @@
+---
+- name: GoLang
+  community.general.homebrew:
+    name: go
+    state: present
+
+- name: GoEnv
+  community.general.homebrew:
+    name: goenv
+    state: present

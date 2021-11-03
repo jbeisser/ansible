@@ -1,0 +1,5 @@
+---
+- name: Install QRencode
+  community.general.homebrew:
+    name: qrencode
+    state: present

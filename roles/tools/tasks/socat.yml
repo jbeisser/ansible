@@ -1,0 +1,5 @@
+---
+- name: Install socat
+  community.general.homebrew:
+    name: socat
+    state: present
