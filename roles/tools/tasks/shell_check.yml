@@ -1,0 +1,16 @@
+---
+
+- name: Install ShellCheck
+  community.general.homebrew:
+    name: shellcheck
+    state: latest
+
+- name: Install ShellHarden
+  community.general.homebrew:
+    name: shellharden
+    state: latest
+
+- name: Install shfmt
+  community.general.homebrew:
+    name: shfmt
+    state: latest

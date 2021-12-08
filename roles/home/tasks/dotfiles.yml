@@ -1,15 +1,13 @@
 ---
 - name: SSH RC
-  copy:
+  ansible.builtin.copy:
     src: files/sshrc
     dest: "{{ ansible_user_dir }}/.ssh/rc"
     mode: 0700
   when: dirs
 
-# tmux is managed elsewhere
-
 - name: BASHRC
-  copy:
+  ansible.builtin.copy:
     src: files/bashrc
     dest: "{{ ansible_user_dir }}/.bashrc"
     mode: 0640
@@ -17,14 +15,14 @@
   register: bashrc
 
 - name: TIMEZONE
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "{{ ansible_user_dir }}/.bashrc"
     line: "export TZ={{ user_tz }}"
     state: present
   when: bashrc
 
 - name: VIMRC
-  copy:
+  ansible.builtin.copy:
     src: files/vimrc
     dest: "{{ ansible_user_dir }}/.vimrc"
     mode: 0640

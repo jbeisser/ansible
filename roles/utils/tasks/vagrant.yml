@@ -1,0 +1,12 @@
+---
+- include_tasks: virtualbox.yml
+
+- name: Install Vagrant
+  community.general.homebrew_cask:
+    name: vagrant
+    state: present
+
+- name: Install vagrant-completion
+  community.general.homebrew:
+    name: vagrant-completion
+    state: present

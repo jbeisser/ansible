@@ -1,0 +1,19 @@
+---
+- name: Install Amethyst WM
+  community.general.homebrew_cask:
+    name: amethyst
+    state: present
+
+- name: Amathyst Layout
+  community.general.osx_defaults:
+    domain: com.amethyst.amethyst
+    key: layouts
+    type: array
+    value: [tall, fullscreen, bsp]
+
+- name: Amethyst disable mouse focus
+  community.general.osx_defaults:
+    domain: com.amethyst.amethyst
+    key: focus-follows-mouse
+    type: bool
+    value: false

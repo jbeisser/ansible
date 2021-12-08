@@ -1,0 +1,10 @@
+---
+- name: misc other utils
+  include_role:
+    name: utils
+    tasks_from: "{{ item }}"
+  loop:
+    - vuescan
+    - sonos
+    - calibre
+    - spotify

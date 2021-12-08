@@ -1,0 +1,6 @@
+---
+- include_tasks: gnupg.yml
+
+- name: Install PasswordStore
+  community.general.homebrew:
+    name: pass

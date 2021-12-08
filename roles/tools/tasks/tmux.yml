@@ -1,0 +1,10 @@
+---
+- name: Install tmux(1)
+  community.general.homebrew:
+    name: tmux
+    state: present
+
+- name: Install xpanes
+  community.general.homebrew:
+    name: tmux-xpanes
+    state: present

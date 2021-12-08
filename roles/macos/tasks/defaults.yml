@@ -1,8 +1,7 @@
 ---
-# sets macOS defaults
 
 - name: Enable screensaver password
-  osx_defaults:
+  community.general.osx_defaults:
     domain: com.apple.screensaver
     key: askForPassword
     type: int
@@ -10,7 +9,7 @@
     state: present
 
 - name: Require password after 5 seconds
-  osx_defaults:
+  community.general.osx_defaults:
     domain: com.apple.screensaver
     key: askForPasswordDelay
     type: float
@@ -18,28 +17,13 @@
     state: present
 
 - name: Set 24-hour clock
-  osx_defaults:
+  community.general.osx_defaults:
     domain: com.apple.menuextra.clock
     key: DateFormat
     type: string
     value: "H:mm"
 
 - name: Set "nohidden" on ~/Library
-  command: chflags nohidden ~/Library
-
-- name: Set Caffeine default time
-  osx_defaults:
-    domain: com.lightheadsw.Caffeine
-    key: DefaultDuration
-    type: int
-    value: 60
-    state: present
-
-- name: Turn off Caffeine startup menu
-  osx_defaults:
-    domain: com.lightheadsw.Caffeine
-    key: SuppressLaunchMessage
-    type: bool
-    value: true
-    state: present
-
+#  ansible.builtin.command: chflags nohidden ~/Library
+  ansible.builtin.command: chflags nohidden {{user_dir }}/Library
+  become: true

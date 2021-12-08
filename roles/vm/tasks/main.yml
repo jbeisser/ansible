@@ -1,0 +1,15 @@
+---
+- name: Install VM utils
+  include_role:
+    name: utils
+    tasks_from: "{{ item }}"
+  loop:
+    - virtualbox
+    - vagrant
+
+- name: Install VM tools
+  include_role:
+    name: tools
+    tasks_from: "{{ item }}"
+  loop:
+    - qemu

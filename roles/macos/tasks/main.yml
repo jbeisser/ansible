@@ -1,8 +1,6 @@
 ---
-- include: "{{ item }}.yml"
+- include_tasks: "{{ item }}.yml"
   loop:
    - defaults
+   - systemsetup
    - brew
-   - home
-  when:
-    - ansible_distribution == "MacOSX" and ansible_system == "Darwin" and ansible_pkg_mgr == "homebrew"

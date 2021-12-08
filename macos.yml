@@ -8,14 +8,86 @@
     brew_root: /usr/local
 
   pre_tasks:
-    - name: Laptop?
-      shell: echo "yes"
-      register: macbook
-      when:
-        - (ansible_model.find('MacBook') != -1 and ansible_distribution == "MacOSX")
+    - name: Create System groups
+      group_by: key="sys_{{ ansible_facts['system'] | lower }}"
+
+    - name: Create Hardware groups
+      group_by: key="hw_{{ ansible_model | lower | regex_search('([a-z]+)') }}"
+
+    - debug:
+        msg: "function: {{ function }}"
+
+    # add in via --extra-vars 'function="[\"foo\", \"bar\"]"'. Defined roles can then be added below
+    # current "functional" host_groups are "work" and "vpn". If not defined, it does nothing.
+    - name: Group by function
+      group_by: key="{{ item }}"
+      loop: "{{ function }}"
+      when: function is defined
+
+    - debug:
+        msg: "GROUPS: {{ groups }}"
+
+- hosts: sys_darwin
+  gather_facts: false
+  vars:
+    brew_root: /usr/local
 
   roles:
     - macos
-    - home
-    # - python  // disabled for now due to significant revamp in how pyenv is leveraged.
+    - common
 
+- hosts: hw_macbookpro
+  gather_facts: false
+
+  roles:
+    - laptop
+
+- hosts: hw_macmini
+  gather_facts: false
+
+  roles:
+    - desktop
+    - remotes
+
+- hosts: work
+  gather_facts: false
+
+  roles:
+    - devel
+    - vm
+
+- hosts: ops
+  gather_facts: false
+
+  roles:
+    - devel
+    - operations
+    - network
+
+- hosts: secops
+  gather_facts: false
+
+  roles:
+    - devel
+    - secops
+
+- hosts: home
+  gather_facts: false
+
+  roles:
+    - devel
+    - misc
+
+- hosts: netadmin
+  gather_facts: false
+
+  vars:
+    netadmin_address: "{{ netadmin.network.ethernet.address }}"
+    netadmin_netmask: "{{ netadmin.network.ethernet.netmask }}"
+    netadmin_gateway: "{{ netadmin.network.ethernet.gateway }}"
+    vlan0_parent: Ethernet
+    vlan0_name: "{{ netadmin.network.vlan0.name }}"
+    vlan0_tag: "{{ netadmin.network.vlan0.tag }}"
+
+  roles:
+    - netadmin

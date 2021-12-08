@@ -1,0 +1,6 @@
+caffeine_duration: 60
+ghidra_package_name: ghidra
+
+displaylink_autostart: true
+
+nuclei_template_dir: "{{ ansible_facts['user_dir']/nuclei-templates }}"

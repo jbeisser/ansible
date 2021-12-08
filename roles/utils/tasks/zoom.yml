@@ -1,0 +1,5 @@
+---
+- name: Install Zoom
+  community.general.homebrew_cask:
+    name: zoom
+    state: present

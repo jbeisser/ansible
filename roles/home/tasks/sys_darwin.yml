@@ -1,16 +1,4 @@
 ---
-
-# specific changes for MacOS
-
-- name: Check if brew's bash-completion is in place.
-  shell: "test -f {{ brew_root}}/etc/bash_completion && echo 'yes'"
-  environment:
-    PATH: "{{ brew_root }}/bin:{{ ansible_user_dir }}/bin:{{ ansible_env.PATH }}"
-  register: completion
-
-- debug:
-    var: completion
-
 - name: Add completions to .profile
   blockinfile:
     path: "{{ ansible_user_dir }}/.bashrc"
@@ -26,8 +14,3 @@
           source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
         fi
       fi
-  when:
-    - ansible_distribution == "MacOSX" and ansible_pkg_mgr == "homebrew" and completion.stdout == "yes"
-  tags:
-    - completion
-
