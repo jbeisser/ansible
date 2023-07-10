@@ -1,0 +1,24 @@
+---
+- include_tasks: virtualbox.yml
+
+- name: Install Vagrant
+  community.general.homebrew_cask:
+    name: vagrant
+    state: present
+  register: vagrant_installed
+  when: virtualbox_installed.failed != True and vagrant_installed is undefined
+
+- name: Install vagrant-completion
+  community.general.homebrew:
+    name: vagrant-completion
+    state: present
+  register: vagrant_completion_installed
+  when: vagrant_installed.failed != True and vagrant_completion_installed is undefined
+
+- debug:
+    msg: "{{ vagrant_installed }}"
+  when: debug == True and vagrant_installed is defined
+
+- debug:
+    msg: "{{ vagrant_completion_installed }}"
+  when: debug == True and vagrant_completion_installed is defined

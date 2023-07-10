@@ -1,0 +1,11 @@
+---
+- name: Install DiskInventoryX
+  community.general.homebrew_cask:
+    name: disk-inventory-x
+    state: present
+  register: diskinventory_installed
+  when: diskinventory_installed is undefined
+
+- debug:
+    msg: "{{ diskinventory_installed }}"
+  when: debug == True and diskinventory_installed is defined

@@ -1,0 +1,11 @@
+---
+- name: Install QRencode
+  community.general.homebrew:
+    name: qrencode
+    state: present
+  register: qrencode_installed
+  when: qrencode_installed is undefined
+
+- debug:
+    msg: "{{ qrencode_installed }}"
+  when: debug == True and qrencode_installed is defined

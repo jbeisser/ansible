@@ -1,0 +1,11 @@
+---
+- name: Install Spotify
+  community.general.homebrew_cask:
+    name: spotify
+    state: present
+  register: spotify_installed
+  when: spotify_installed is undefined
+
+- debug:
+    msg: "{{ spotify_installed }}"
+  when: debug == True and spotify_installed is defined

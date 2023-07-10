@@ -1,4 +1,0 @@
-- name: Install OpenConnect
-  community.general.homebrew:
-    name: openconnect
-    state: present

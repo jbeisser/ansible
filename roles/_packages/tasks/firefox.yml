@@ -1,0 +1,11 @@
+---
+- name: Install Firefox
+  community.general.homebrew_cask:
+    name: firefox
+    state: present
+  register: firefox_installed
+  when: firefox_installed is undefined
+
+- debug:
+    msg: "{{ firefox_installed }}"
+  when: debug == True and firefox_installed is defined

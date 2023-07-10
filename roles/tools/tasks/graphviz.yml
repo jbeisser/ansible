@@ -1,5 +1,0 @@
----
-- name: Install Graphviz
-  community.general.homebrew:
-    name: graphviz
-    state: present

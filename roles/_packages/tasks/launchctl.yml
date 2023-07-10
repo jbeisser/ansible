@@ -1,0 +1,11 @@
+---
+- name: install launchctl-completion
+  community.general.homebrew:
+    name: launchctl-completion
+    state: present
+  register: launchctl_comp
+  when: launchctl_comp is undefined
+
+- debug:
+    msg: "{{ launchctl_comp }}"
+  when: debug == True and launchctl_comp is defined

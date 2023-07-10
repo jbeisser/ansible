@@ -1,0 +1,22 @@
+---
+- name: Install Tor
+  community.general.homebrew:
+    name: tor
+    state: present
+  register: tor_installed
+  when: tor_installed is undefined
+
+- name: Install TorSocks
+  community.general.homebrew:
+    name: torsocks
+    state: present
+  register: torsocks_installed
+  when: tor_installed.failed != True and torsocks_installed is undefined
+
+- debug:
+    msg: "{{ tor_installed }}"
+  when: debug == True and tor_installed is defined
+
+- debug:
+    msg: "{{ torsocks_installed }}"
+  when: debug == True and torsocks_installed is defined

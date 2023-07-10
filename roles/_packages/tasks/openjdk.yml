@@ -1,0 +1,11 @@
+---
+- name: Install OpenJDK (temurin)
+  community.general.homebrew_cask:
+    name: temurin
+    state: present
+  register: openjdk_installed
+  when: openjdk_installed is undefined
+
+- debug:
+    msg: "{{ openjdk_installed }}"
+  when: debug == True and openjdk_installed is defined

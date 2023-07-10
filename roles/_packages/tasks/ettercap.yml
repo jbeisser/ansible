@@ -1,0 +1,11 @@
+---
+- name: Install Ettercap
+  community.general.homebrew:
+    name: ettercap
+    state: present
+  register: ettercap_installed
+  when: ettercap_installed is undefined
+
+- debug:
+    msg: "{{ ettercap_installed }}"
+  when: debug == True and ettercap_installed is defined

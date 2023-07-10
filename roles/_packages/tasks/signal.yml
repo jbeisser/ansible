@@ -1,0 +1,11 @@
+---
+- name: Install Signal
+  community.general.homebrew_cask:
+    name: signal
+    state: present
+  register: signal_installed
+  when: signal_installed is undefined
+
+- debug:
+    msg: "{{ signal_installed }}"
+  when: debug == True and signal_installed is defined

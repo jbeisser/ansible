@@ -1,0 +1,11 @@
+---
+- name: Install DigitalOcean CLI
+  community.general.homebrew:
+    name: doctl
+    state: present
+  register: doctl_installed
+  when: doctl_installed is undefined
+
+- debug:
+    msg: "{{ doctl_installed }}"
+  when: debug == True and doctl_installed is defined

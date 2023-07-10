@@ -1,7 +1,8 @@
-function: work
+function: personal
 
 aws:
-   region: us-east-1
+  default:
+    region: us-west-2
 
 terraform:
   token: "{{ terraform_cloud_token }}"

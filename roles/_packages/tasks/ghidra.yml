@@ -1,0 +1,13 @@
+---
+- include_tasks: openjdk.yml
+
+- name: Install Ghidra
+  community.general.homebrew_cask:
+    name: "{{ ghidra_package_name }}"
+    state: present
+  register: ghidra_installed
+  when: openjdk_installed.failed != True and ghidra_installed is undefined
+
+- debug:
+    msg: "{{ ghidra_installed }}"
+  when: debug == True and ghidra_installed is defined

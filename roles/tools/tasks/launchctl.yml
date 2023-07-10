@@ -1,5 +1,0 @@
----
-- name: install launchctl-completion
-  community.general.homebrew:
-    name: launchctl-completion
-    state: present

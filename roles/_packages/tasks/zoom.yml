@@ -1,0 +1,11 @@
+---
+- name: Install Zoom
+  community.general.homebrew_cask:
+    name: zoom
+    state: present
+  register: zoom_installed
+  when: zoom_installed is undefined
+
+- debug:
+    msg: "{{ zoom_installed }}"
+  when: debug == True and zoom_installed is defined

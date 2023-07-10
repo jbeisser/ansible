@@ -1,0 +1,11 @@
+---
+- name: Install nmap
+  community.general.homebrew:
+    name: nmap
+    state: present
+  register: nmap_installed
+  when: nmap_installed is undefined
+
+- debug:
+    msg: "{{ nmap_installed }}"
+  when: debug == True and nmap_installed is defined

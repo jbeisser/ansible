@@ -1,0 +1,41 @@
+---
+- name: Ensure homebrew doesn't have terraform installed
+  community.general.homebrew:
+    name: terraform
+    state: absent
+  register: terraform_absent
+
+- debug:
+    msg: "{{ terraform_absent }}"
+  when: debug == True and terraform_absent is defined
+
+- name: add tfswitch tap
+  community.general.homebrew_tap:
+    name: warrensbox/tap
+    state: present
+  register: warransbox_tap
+  when: terraform_absent is succeeded
+
+- debug:
+    msg: "{{ warransbox_tap }}"
+  when: debug == True and warransbox_tap is defined
+
+- name: Install warrensbox/tap/tfswitch
+  community.general.homebrew:
+    name: tfswitch
+    state: present
+  register: tfswitch_installed
+  when: warransbox_tap is succeeded
+
+- debug:
+    msg: "{{ tfswitch_installed }}"
+  when: debug == True and tfswitch_installed is defined
+
+- name: Install latest terraform w/ tfswtich
+  ansible.builtin.command: /usr/local/bin/tfswitch --latest
+  register: terraform_latest_installed
+  when: tfswitch_installed is succeeded
+
+- debug:
+    msg: "{{ terraform_latest_installed }}"
+  when: debug == True and terraform_latest_installed is defined

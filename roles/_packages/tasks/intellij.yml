@@ -1,0 +1,11 @@
+---
+- name: Install Intellij IDEA
+  community.general.homebrew_cask:
+    name: intellij-idea
+    state: present
+  register: intellij_installed
+  when: intellij_installed is undefined
+
+- debug:
+    msg: "{{ intellij_installed }}"
+  when: debug == True and intellij_installed is defined

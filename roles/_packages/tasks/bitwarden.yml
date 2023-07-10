@@ -1,0 +1,22 @@
+---
+- name: Install Bitwarden
+  community.general.homebrew_cask:
+    name: bitwarden
+    state: present
+  register: bitwarden_installed
+  when: bitwarden_installed is undefined
+
+- name: Install Bitwarden-cli
+  community.general.homebrew:
+    name: bitwarden-cli
+    state: present
+  register: bitwardencli_installed
+  when: bitwardencli_installed is undefined
+
+- debug:
+    msg: "{{ bitwarden_installed }}"
+  when: debug == True and bitwarden_installed is defined
+
+- debug:
+    msg: "{{ bitwardencli_installed }}"
+  when: debug == True and bitwardencli_installed is defined

@@ -1,0 +1,13 @@
+---
+- include_tasks: mas.yml
+  when: mas_installed is not defined
+
+- name: Install Wireguard
+  ansible.builtin.command:
+    cmd: mas install {{ mas.wireguard }}
+  register: wireguard_installed
+  when: wireguard_installed is not defined and mas_installed is defined
+
+- debug:
+    msg: "{{ wireguard_installed }}"
+  when: debug == True and wireguard_installed is defined

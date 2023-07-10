@@ -1,0 +1,11 @@
+---
+- name: Install authy
+  community.general.homebrew_cask:
+    name: authy
+    state: present
+  register: authy_installed
+  when: authy_installed is undefined
+
+- debug:
+    msg: "{{ authy_installed }}"
+  when: debug == True and authy_installed is defined

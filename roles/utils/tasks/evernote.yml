@@ -1,5 +1,0 @@
----
-- name: Install Evernote
-  community.general.homebrew_cask:
-    name: evernote
-    state: present

@@ -1,0 +1,13 @@
+---
+- name: Install Developer Packages
+  include_role:
+    name: _packages
+    tasks_from: "{{ item }}"
+  loop:
+    - docker
+    - git_tools
+    - golang
+    - intellij
+    - jq
+    - shell_tools
+    - yamllint

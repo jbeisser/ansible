@@ -1,0 +1,11 @@
+---
+- name: Install Azure CLI
+  community.general.homebrew:
+    name: azure-cli
+    state: present
+  register: azurecli_installed
+  when: azurecli_installed is undefined
+
+- debug:
+    msg: "{{ azurecli_installed }}"
+  when: debug == True and azurecli_installed is defined

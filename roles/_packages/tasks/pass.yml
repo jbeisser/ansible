@@ -1,0 +1,13 @@
+---
+- include_tasks: gnupg.yml
+  when: gnupg_installed is not defined
+
+- name: Install PasswordStore
+  community.general.homebrew:
+    name: pass
+  register: passwordstore_installed
+  when: gnupg_installed.failed != True and passwordstore_installed is undefined
+
+- debug:
+    msg: "{{ passwordstore_installed }}"
+  when: debug == True and passwordstore_installed is defined

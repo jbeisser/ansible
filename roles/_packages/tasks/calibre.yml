@@ -1,0 +1,11 @@
+---
+- name: Install Calibre
+  community.general.homebrew_cask:
+    name: calibre
+    state: present
+  register: calibre_installed
+  when: calibre_installed is undefined
+
+- debug:
+    msg: "{{ calibre_installed }}"
+  when: debug == True and calibre_installed is defined

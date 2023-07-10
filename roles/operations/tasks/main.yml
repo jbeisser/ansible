@@ -1,9 +1,0 @@
----
-- name: install ops tools
-  include_role:
-    name: tools
-    tasks_from: "{{ item }}"
-  loop:
-    - terraform
-    - packer
-    - sslscan

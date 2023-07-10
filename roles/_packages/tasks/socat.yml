@@ -1,0 +1,11 @@
+---
+- name: Install socat
+  community.general.homebrew:
+    name: socat
+    state: present
+  register: socat_installed
+  when: socat_installed is undefined
+
+- debug:
+    msg: "{{ socat_installed }}"
+  when: debug == True and socat_installed is defined

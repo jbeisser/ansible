@@ -1,0 +1,11 @@
+---
+- name: Install tunnelblick
+  community.general.homebrew_cask:
+    name: tunnelblick
+    state: present
+  register: tunnelblick_installed
+  when: tunnelblick_installed is undefined
+
+- debug:
+    msg: "{{ tunnelblick_installed }}"
+  when: debug == True and tunnelblick_installed is defined

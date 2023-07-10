@@ -1,0 +1,11 @@
+---
+- name: Install Sonos Controller
+  community.general.homebrew_cask:
+    name: sonos
+    state: present
+  register: sonos_installed
+  when: sonos_installed is undefined
+
+- debug:
+    msg: "{{ sonos_installed }}"
+  when: debug == True and sonos_installed is defined

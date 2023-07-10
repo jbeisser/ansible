@@ -1,0 +1,24 @@
+---
+- import_tasks:
+    file: gnupg.yml
+  when: gnupg_installed is undefined
+
+- name: Install git-crypt
+  community.general.homebrew:
+    name: git-crypt
+  register: git_crypt_installed
+  when: xcode_installed is defined and gnupg_installed is succeeded and git_crypt_installed is undefined
+
+- debug:
+    msg: "{{ git_crypt_installed }}"
+  when: debug == True and git_crypt_installed is defined
+
+- name: Install git-extras
+  community.general.homebrew:
+    name: git-extras
+  register: git_extras_installed
+  when: xcode_installed is defined and git_extras_installed is undefined
+
+- debug:
+    msg: "{{ git_extras_installed }}"
+  when: debug == True and git_extras_installed is defined

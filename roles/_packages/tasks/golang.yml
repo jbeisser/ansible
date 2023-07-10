@@ -1,0 +1,11 @@
+---
+- name: Install GoLang
+  community.general.homebrew:
+    name: go
+    state: present
+  register: golang_installed
+  when: golang_installed is undefined
+
+- debug:
+    msg: "{{ golang_installed }}"
+  when: debug == True and golang_installed is defined

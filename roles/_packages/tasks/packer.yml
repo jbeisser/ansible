@@ -1,0 +1,22 @@
+---
+- name: Install packer
+  community.general.homebrew:
+    name: packer
+    state: present
+  register: packer_installed
+  when: packer_installed is undefined
+
+- name: Install packer-completion
+  community.general.homebrew:
+    name: packer-completion
+    state: present
+  register: packer_comp_installed
+  when: packer_comp_installed is undefined and packer_installed.failed != True
+
+- debug:
+    msg: "{{ packer_installed }}"
+  when: debug == True and packer_installed is defined
+
+- debug:
+    msg: "{{ packer_comp_installed }}"
+  when: debug == True and packer_comp_installed is defined

@@ -1,0 +1,11 @@
+---
+- name: Install OpenConnect
+  community.general.homebrew:
+    name: openconnect
+    state: present
+  register: openconnect_installed
+  when: openconnect_installed is undefined
+
+- debug:
+    msg: "{{ openconnect_installed }}"
+  when: debug == True and openconnect_installed is defined

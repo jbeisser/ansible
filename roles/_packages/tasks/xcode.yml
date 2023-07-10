@@ -1,0 +1,13 @@
+---
+- include_tasks: mas.yml
+  when: mas_installed is not defined
+
+- name: Install Latest Xcode
+  ansible.builtin.shell:
+    cmd: mas install {{ mas.xcode }}
+  register: xcode_installed
+  when: mas_installed.failed != true and xcode_installed is undefined
+
+- debug:
+    msg: "{{ xcode_installed }}"
+  when: debug == True and xcode_installed is defined

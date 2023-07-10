@@ -1,7 +1,0 @@
----
-- name: Desktop utils
-  include_role:
-    name: utils
-    tasks_from: "{{ item }}"
-  loop:
-    - wireshark

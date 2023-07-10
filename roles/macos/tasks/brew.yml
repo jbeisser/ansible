@@ -1,5 +1,0 @@
----
-- name: Update Homebrew
-  community.general.homebrew:
-    update_homebrew: yes
-    upgrade_all: "{{ homebrew_upgrade_packages }}"

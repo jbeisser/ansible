@@ -1,0 +1,11 @@
+---
+- name: Install mtr
+  community.general.homebrew:
+    name: mtr
+    state: present
+  register: mtr_installed
+  when: mtr_installed is undefined
+
+- debug:
+    msg: "{{ mtr_installed }}"
+  when: debug == True and mtr_installed is defined

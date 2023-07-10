@@ -1,0 +1,11 @@
+---
+- name: Install Slack
+  community.general.homebrew_cask:
+    name: slack
+    state: present
+  register: slack_installed
+  when: slack_installed is undefined
+
+- debug:
+    msg: "{{ slack_installed }}"
+  when: debug == True and slack_installed is defined

@@ -1,0 +1,11 @@
+---
+- name: Install Wireshark
+  community.general.homebrew_cask:
+    name: wireshark
+    state: present
+  register: wireshark_installed
+  when: wireshark_installed is undefined
+
+- debug:
+    msg: "{{ wireshark_installed }}"
+  when: debug == True and wireshark_installed is defined

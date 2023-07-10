@@ -1,0 +1,16 @@
+---
+- name: Install Virtualbox
+  community.general.homebrew:
+    name: virtualbox
+    state: present
+  register: virtualbox_installed
+  when: virtualbox_installed is undefined
+
+- debug:
+    msg: "Virtualbox Extension Pack is required to run Virtualbox.
+    Please download and install it from https://www.virtualbox.org/"
+    when: virtualbox_installed is defined
+
+- debug:
+    msg: "{{ virtualbox_installed }}"
+  when: debug == True and virtualbox_installed is defined

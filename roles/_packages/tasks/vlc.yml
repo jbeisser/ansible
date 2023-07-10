@@ -1,0 +1,11 @@
+---
+- name: Install VLC
+  community.general.homebrew_cask:
+    name: vlc
+    state: present
+  register: vlc_installed
+  when: vlc_installed is undefined
+
+- debug:
+    msg: "{{ vlc_installed }}"
+  when: debug == True and vlc_installed is defined

@@ -1,0 +1,11 @@
+---
+- name: Install yamllint
+  community.general.homebrew:
+    name: yamllint
+    state: present
+  register: yamllint_installed
+  when: yamllint_installed is undefined
+
+- debug:
+    msg: "{{ yamllint_installed }}"
+  when: debug == True and yamllint_installed is defined

@@ -1,9 +1,0 @@
----
-
-- name: Install Caffeine
-  include_role:
-    name: utils
-    tasks_from: caffeine
-
-- include_role:
-    name: wifi

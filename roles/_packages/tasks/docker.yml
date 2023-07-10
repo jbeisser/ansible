@@ -1,0 +1,11 @@
+---
+- name: Install Docker Desktop
+  community.general.homebrew_cask:
+    name: docker
+    state: present
+  register: docker_installed
+  when: arch == "x86_64" and system == "darwin" and docker_installed is not defined
+
+- debug:
+    msg: "{{ docker_installed }}"
+  when: debug == True and docker_installed is defined

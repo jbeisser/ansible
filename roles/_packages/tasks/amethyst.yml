@@ -1,0 +1,27 @@
+---
+- name: Install Amethyst WM
+  community.general.homebrew_cask:
+    name: amethyst
+    state: present
+  register: amethyst_installed
+  when: amethyst_installed is undefined
+
+- name: Amathyst Layout
+  community.general.osx_defaults:
+    domain: com.amethyst.amethyst
+    key: layouts
+    type: array
+    value: [tall, fullscreen, bsp]
+  when: amethyst_installed.failed != True
+
+- name: Amethyst disable mouse focus
+  community.general.osx_defaults:
+    domain: com.amethyst.amethyst
+    key: focus-follows-mouse
+    type: bool
+    value: false
+  when: amethyst_installed.failed != True
+
+- debug:
+    msg: "{{ amethyst_installed }}"
+  when: debug == True and amethyst_installed is defined

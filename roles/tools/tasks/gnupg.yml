@@ -1,4 +1,0 @@
----
-- name: Install GnuPG
-  community.general.homebrew:
-    name: gnupg

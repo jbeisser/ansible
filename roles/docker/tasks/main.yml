@@ -1,5 +1,0 @@
----
-- name: Install Docker
-  include_role:
-    name: utils
-    tasks_from: docker

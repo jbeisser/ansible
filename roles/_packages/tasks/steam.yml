@@ -1,0 +1,11 @@
+---
+- name: Install Steam
+  community.general.homebrew_cask:
+    name: steam
+    state: present
+  register: steam_installed
+  when: steam_installed is undefined
+
+- debug:
+    msg: "{{ steam_installed }}"
+  when: debug == True and steam_installed is defined

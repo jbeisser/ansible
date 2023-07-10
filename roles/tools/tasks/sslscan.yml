@@ -1,5 +1,0 @@
----
-- name: Install SSLScan
-  community.general.homebrew:
-    name: sslscan
-    state: present

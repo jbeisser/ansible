@@ -1,17 +1,33 @@
 ---
 # global variables
 user_dir: "{{ ansible_facts['user_dir'] }}"
+
 system:
-    time_zone: America/Los_Angeles
-    screensaver: true
-    ntp_server: tick.caustic.org
+  time_zone: America/Los_Angeles
+  screensaver: true
+  ntp_server: tick.caustic.org
 
 user:
-    timezone: America/Los_Angeles
+  timezone: America/Los_Angeles
 
 homebrew:
-    brew_state: latest
-    brew_ignore_errors: no
-    cask_ignore_errors: yes
+  brew_state: latest
+  brew_ignore_errors: no
+  cask_ignore_errors: yes
 
 debug: yes
+
+aws:
+  default:
+    region: us-east-1
+
+mas:
+  xcode: 497799835
+  wireguard: 1451685025
+  somafm: 449155338
+  theclock: 488764545
+  kindle: 405399194
+  projectplan: 742239304
+  msexcel: 46205843
+  msoutlook: 985367838
+  msword: 462054704

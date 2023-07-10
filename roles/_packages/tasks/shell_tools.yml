@@ -1,0 +1,34 @@
+---
+
+- name: Install ShellCheck
+  community.general.homebrew:
+    name: shellcheck
+    state: latest
+  register: shellcheck_installed
+  when: shellcheck_installed is undefined
+
+- name: Install ShellHarden
+  community.general.homebrew:
+    name: shellharden
+    state: latest
+  register: shellharden_installed
+  when: shellharden_installed is undefined
+
+- name: Install shfmt
+  community.general.homebrew:
+    name: shfmt
+    state: latest
+  register: shfmt_installed
+  when: shfmt_installed is undefined
+
+- debug:
+    msg: "{{ shellcheck_installed }}"
+  when: debug == True and shellcheck_installed is defined
+
+- debug:
+    msg: "{{ shellharden_installed }}"
+  when: debug == True and shellharden_installed is defined
+
+- debug:
+    msg: "{{ shfmt_installed }}"
+  when: debug == True and shfmt_installed is defined

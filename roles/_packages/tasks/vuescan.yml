@@ -1,0 +1,11 @@
+---
+- name: Install VueScan
+  community.general.homebrew_cask:
+    name: vuescan
+    state: present
+  register: vuescan_installed
+  when: vuescan_installed is undefined
+
+- debug:
+    msg: "{{ vuescan_installed }}"
+  when: debug == True and vuescan_installed is defined

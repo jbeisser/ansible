@@ -1,0 +1,26 @@
+---
+- name: mkdir ~/.aws
+  ansible.builtin.file:
+    path: ~/.aws
+    state: directory
+    mode: '0700'
+  register: aws_dir_created
+  when: awscli_installed is succeeded
+
+- debug:
+    msg: "{{ aws_dir_created }}"
+  when: debug == True and aws_dir_created is defined
+
+- name: Create ~/.aws/config
+  ansible.builtin.copy:
+    dest: ~/.aws/config
+    mode: '0600'
+    content: |
+      [default]
+      region = {{ aws.default.region }}
+  register: aws_config_created
+  when: aws_dir_created is defined and awscli_installed is succeeded
+
+- debug:
+    msg: "{{ aws_config_created }}"
+  when: debug == True and aws_config_created is defined

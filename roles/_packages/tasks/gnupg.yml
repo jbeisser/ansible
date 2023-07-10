@@ -1,0 +1,10 @@
+---
+- name: Install GnuPG
+  community.general.homebrew:
+    name: gnupg
+  register: gnupg_installed
+  when: gnupg_installed is undefined
+
+- debug:
+    msg: "{{ gnupg_installed }}"
+  when: debug == True and gnupg_installed is defined

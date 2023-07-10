@@ -1,0 +1,7 @@
+---
+aws:
+  default:
+    region: us-east-1
+
+terraform:
+  token: "[* empty *]"

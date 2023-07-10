@@ -1,7 +1,0 @@
----
-- include_tasks: openjdk.yml
-
-- name: Install Ghidra
-  community.general.homebrew_cask:
-    name: "{{ ghidra_package_name }}"
-    state: present

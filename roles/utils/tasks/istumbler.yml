@@ -1,5 +1,0 @@
----
-- name: Install iStumbler
-  community.general.homebrew:
-    name: istumbler
-    state: present

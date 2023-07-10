@@ -1,0 +1,11 @@
+---
+- name: Install jq
+  community.general.homebrew:
+    name: jq
+    state: present
+  register: jq_installed
+  when: jq_installed is undefined
+
+- debug:
+    msg: "{{ jq_installed }}"
+  when: debug == True and jq_installed is defined

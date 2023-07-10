@@ -1,9 +1,0 @@
-- name: Install Virtualbox
-  community.general.homebrew:
-    name: virtualbox
-    state: present
-
-- name: Install Virtualbox Extension Pack
-  community.general.homebrew:
-    name: virtualbox-extension-pack
-    state: present

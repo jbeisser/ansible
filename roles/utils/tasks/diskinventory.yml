@@ -1,5 +1,0 @@
----
-- name: Install DiskInventoryX
-  community.general.homebrew_cask:
-    name: disk-inventory-x
-    state: present

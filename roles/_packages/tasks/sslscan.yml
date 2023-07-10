@@ -1,0 +1,11 @@
+---
+- name: Install SSLScan
+  community.general.homebrew:
+    name: sslscan
+    state: present
+  register: sslscan_installed
+  when: sslscan_installed is undefined
+
+- debug:
+    msg: "{{ sslscan_installed }}"
+  when: debug == True and sslscan_installed is defined

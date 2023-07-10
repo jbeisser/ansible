@@ -1,0 +1,11 @@
+---
+- name: Install QEMU
+  community.general.homebrew:
+    name: qemu
+    state: present
+  register: qemu_installed
+  when: qemu_installed is undefined
+
+- debug:
+    msg: "{{ qemu_installed }}"
+  when: debug == True and qemu_installed is defined

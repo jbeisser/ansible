@@ -1,0 +1,11 @@
+---
+- name: Install Graphviz
+  community.general.homebrew:
+    name: graphviz
+    state: present
+  register: graphviz_installed
+  when: graphviz_installed is undefined
+
+- debug:
+    msg: "{{ graphviz_installed }}"
+  when: debug == True and graphviz_installed is defined

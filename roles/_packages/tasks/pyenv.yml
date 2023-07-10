@@ -1,0 +1,22 @@
+---
+- name: Install pyenv
+  community.general.homebrew:
+    name: pyenv
+    state: present
+  register: pyenv_installed
+  when: pyenv_installed is undefined
+
+- name: Install pyenv-virtualenv
+  community.general.homebrew:
+    name: pyenv-virtualenv
+    state: present
+  register: pyenv_venv_installed
+  when: pyenv_installed.failed != True and pyenv_venv_installed is undefined
+
+- debug:
+    msg: "{{ pyenv_installed }}"
+  when: debug == True and pyenv_installed is defined
+
+- debug:
+    msg: "{{ pyenv_venv_installed }}"
+  when: debug == True and pyenv_venv_installed is defined

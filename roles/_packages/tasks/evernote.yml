@@ -1,0 +1,11 @@
+---
+- name: Install Evernote
+  community.general.homebrew_cask:
+    name: evernote
+    state: present
+  register: evernote_installed
+  when: evernote_installed is undefined
+
+- debug:
+    msg: "{{ evernote_installed }}"
+  when: debug == True and evernote_installed is defined

@@ -1,0 +1,36 @@
+---
+- include_role:
+    name: _packages
+    tasks_from: "{{ item }}"
+  loop:
+    - awscli
+    - packer
+    - terraform
+
+- name: Configure Terraform
+  include_tasks: terraform.yml
+
+- name: Configure AWS
+  include_tasks: aws.yml
+
+- include_role:
+    name: _packages
+    tasks_from: doctl
+  when: doctl_installed is undefined and function == "personal"
+
+- name: Configure Digital Ocean
+  include_tasks: do.yml
+  when: doctl_installed is defined and function == "personal"
+
+- include_role:
+    name: _packages
+    tasks_from: azurecli
+  when: azurecli_installed is undefined and function == "personal"
+
+- name: Configure Azure
+  include_tasks: azure.yml
+  when: azurecli_installed is defined and function == "personal"
+
+- name: Cloud Done
+  ansible.builtin.set_fact:
+    cloud_packages: done

@@ -1,0 +1,11 @@
+---
+- name: Install base AWS tools
+  community.general.homebrew:
+    name: awscli
+    state: present
+  register: awscli_installed
+  when: awscli_installed is undefined
+
+- debug:
+    msg: "{{ awscli_installed }}"
+  when: debug == True and awscli_installed is defined

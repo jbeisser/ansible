@@ -1,0 +1,11 @@
+---
+- name: Install iterm2
+  community.general.homebrew_cask:
+    name: iterm2
+    state: present
+  register: iterm2_installed
+  when: iterm2_installed is undefined
+
+- debug:
+    msg: "{{ iterm2_installed }}"
+  when: debug == True and iterm2_installed is defined

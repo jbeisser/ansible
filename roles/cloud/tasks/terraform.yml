@@ -1,0 +1,14 @@
+---
+- name: Terraform RC file
+  blockinfile:
+    path: ~/.terraformrc
+    block: |
+      credentials "app.terraform.io" {
+        token = "{{ terraform.token }}"
+      }
+  register: terraform_rc_created
+  when: terraform.token is defined
+
+- debug:
+    msg: "{{ terraform_rc_created }}"
+  when: debug == True and terraform_rc_created is defined

@@ -1,5 +1,0 @@
----
-- name: Install Spotify
-  community.general.homebrew_cask:
-    name: spotify
-    state: present

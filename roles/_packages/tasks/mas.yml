@@ -1,0 +1,11 @@
+---
+- name: install mac app store (mas) cli
+  community.general.homebrew:
+    name: mas
+    state: present
+  register: mas_installed
+  when: mas_installed is undefined
+
+- debug:
+    msg: "{{ mas_installed }}"
+  when: debug == True and mas_installed is defined

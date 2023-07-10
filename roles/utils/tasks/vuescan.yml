@@ -1,5 +1,0 @@
----
-- name: Install VueScan
-  community.general.homebrew_cask:
-    name: vuescan
-    state: present

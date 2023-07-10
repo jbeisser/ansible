@@ -1,0 +1,11 @@
+---
+- name: Install nuclei
+  community.general.homebrew:
+    name: nuclei
+    state: present
+  register: nuclei_installed
+  when: nuclei_installed is undefined
+
+- debug:
+    msg: "{{ nuclei_installed }}"
+  when: debug == True and nuclei_installed is defined
