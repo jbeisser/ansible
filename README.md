@@ -17,9 +17,11 @@ CLI definable `function` host groups. These apply specific roles, values, etc fo
 my own use cases. Nothing in this depends on host names. The assumption is host names
 are an unreliable source of truth for provisioning a system for a given function.
 
-To apply a function, use `--extra-vars 'function=[\"foo\",\"bar\"]'` to the CLI to 
+To apply a function, use `--extra-vars 'func=[\"foo\",\"bar\"]'` to the CLI to 
 create the host group, then define the group variables in `group_vars`, and the roles
 to be applied in the `macos.yml` playbook.
+
+Only real functions checked for are 'work' and 'personal'. Others can be added fairly easily.
 
 Using the Ansible Playbook
 ----
@@ -29,22 +31,11 @@ To test the playbook:
 To run it:  
     `ansible-playbook --ask-become-pass ./macos.yml`
 
-Explanations of roles
-----
-`common`: basic pieces of software that are on every macOS system  
-`macos`: basic settings for a macOS system. Configure brew, set screensaver behavior, etc  
-`desktop`: default utilities for desktop systems  
-`laptop`: default utilities for laptops  
-`home`: configure home directory and files  
-`devel`: install development tools (intellij, etc)  
-`wifi`:  install WiFi specific tools  
-`utils`: collected tasks for GUI utilities  
-`tools`: collected tasks for CLI utilities  
-`vm`: install VM utilities (VirtualBox, vagrant)  
-`docker`: install Docker for Desktop etc  
-
 Change Log
 ----
+2023-07-11
+- rewrite from the ground up.
+
 2021-11-03
 - fix vlan creation
 
