@@ -1,0 +1,16 @@
+---
+- include_role:
+    name: _packages
+    tasks_from: "{{ item }}"
+  when: function == "work"
+  loop:
+    - tunnelblick
+    - viscocity
+
+- include_role:
+    name: _packages
+    tasks_from: "{{ item }}"
+  when: function == "personal"
+  loop:
+    - tunnelblick
+    - wireguard

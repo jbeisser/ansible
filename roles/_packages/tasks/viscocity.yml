@@ -1,0 +1,11 @@
+---
+- name: Install Viscocity
+  community.general.homebrew:
+    name: virtualbox
+    state: present
+  register: viscocity_installed
+  when: viscocity_installed is undefined
+
+- debug:
+    msg: "{{ viscocity_installed }}"
+  when: debug == True and virtualbox_installed is defined

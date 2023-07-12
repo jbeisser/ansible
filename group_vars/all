@@ -1,5 +1,9 @@
 ---
 # global variables
+arch: none
+system: none
+model: none
+
 user_dir: "{{ ansible_facts['user_dir'] }}"
 
 system:

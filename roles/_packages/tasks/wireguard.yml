@@ -11,3 +11,25 @@
 - debug:
     msg: "{{ wireguard_installed }}"
   when: debug == True and wireguard_installed is defined
+
+- name: Install Wireguard-go
+  community.general.homebrew:
+    name: wireguard-go
+    state: present
+  register: wireguard_go_installed
+  when: wireguard_go_installed is not defined
+
+- debug:
+    msg: "{{ wireguard_go_installed }}"
+  when: debug == True and wireguard_go_installed is defined
+
+- name: Install Wireguard-tools
+  community.general.homebrew:
+    name: wireguard-tools
+    state: present
+  register: wireguard_tools_installed
+  when: wireguard_tools_installed is not defined and wireguard_go_installed is defined
+
+- debug:
+    msg: "{{ wireguard_tools_installed }}"
+  when: debug == True and wireguard_tools_installed is defined

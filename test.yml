@@ -42,6 +42,9 @@
   hosts: hw_macbookpro
   gather_facts: false
 
+  roles:
+    - vpn
+
 - name: Mac Mini
   hosts: hw_macmini
   gather_facts: false
@@ -61,3 +64,4 @@
   roles:
     - cloud
     - developer
+    - games

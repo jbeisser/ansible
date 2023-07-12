@@ -1,0 +1,8 @@
+---
+- name: Install Steam
+  include_role:
+    name: _packages
+    tasks_from: "{{ item }}"
+  when: model != "macbookpro10,1"
+  loop:
+    - steam

@@ -5,4 +5,4 @@ aws:
     region: us-west-2
 
 terraform:
-  token: "{{ terraform_cloud_token }}"
+  token: "{{ vault.terraform.token }}"

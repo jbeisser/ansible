@@ -1,4 +1,5 @@
 ---
 hardware: macobookpro
+model: "{{ ansible_model | lower }}"
 system_display_sleep: 5
 system_computer_sleep: 10

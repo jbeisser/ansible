@@ -5,12 +5,13 @@
     tasks_from: "{{ item }}"
   loop:
     - mas
+    - authy
+    - bitwarden
     - iterm
     - xcode
     - pass
-    - authy
-    - bitwarden
     - launchctl
+    - vlc
     - diskinventory
 
 - name: Base Packages Done

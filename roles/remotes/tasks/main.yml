@@ -1,0 +1,11 @@
+---
+- include_role:
+    name: _packages
+    tasks_from: "{{ item }}"
+  loop:
+    - amethyst
+
+# ToDo: add in the following:
+# - use dscl to add user to the SSH group
+# - set SSH to start on boot
+# - set VNC/remote access to start on boot
