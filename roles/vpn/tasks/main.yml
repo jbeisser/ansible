@@ -5,7 +5,7 @@
   when: function == "work"
   loop:
     - tunnelblick
-    - viscocity
+    - viscosity
 
 - include_role:
     name: _packages
