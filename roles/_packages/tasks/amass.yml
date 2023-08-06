@@ -1,0 +1,23 @@
+---
+
+- name: Tap owasp/amass
+  community.general.homebrew_tap:
+    name: owasp-amass/amass
+    state: present
+  register: amass_tapped
+  when: amass_tapped is undefined
+
+- debug:
+    msg: "{{ amass_tapped }}"
+  when: debug == True and amass_tapped is defined
+
+- name: Install amass
+  community.general.homebrew:
+    name: amass
+    state: present
+  register: amass_installed
+  when: amass_installed is undefined and amass_tapped is defined
+
+- debug:
+    msg: "{{ amass_installed }}"
+  when: debug == True and amass_installed is defined
